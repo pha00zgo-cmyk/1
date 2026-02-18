@@ -6,16 +6,16 @@
 
 <!-- SEO 기본 -->
 <title>MONIQUE 모니크 | 서귀포카페 · 서귀포중문카페 · 제주도카페 | QR 메뉴 & 테이크아웃</title>
-<meta name="description" content="제주 서귀포 중문 카페 MONIQUE. QR 메뉴로 커피·디저트·티를 확인하고 카카오톡으로 테이크아웃 주문하세요. Cafe in Seogwipo Jungmun, Jeju. 济州岛西归浦中文咖啡厅。">
+<meta name="description" content="제주 서귀포 중문 카페 MONIQUE. QR 메뉴로 커피·디저트·티를 확인하고 위챗으로 테이크아웃 주문하세요. Cafe in Seogwipo Jungmun, Jeju. 济州岛西归浦中文咖啡厅。">
 <meta name="keywords" content="서귀포카페,서귀포중문카페,제주도카페,제주카페,중문카페,모니크,MONIQUE,QR메뉴,테이크아웃,Seogwipo Cafe,Jungmun Cafe,Jeju Cafe,济州岛咖啡厅">
 <meta name="author" content="MONIQUE Cafe">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://pha00zgo-cmyk.github.io/1/">
 
-<!-- Open Graph (카카오톡/페이스북/인스타그램 공유용) -->
+<!-- Open Graph (SNS 공유용) -->
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="MONIQUE 모니크 | 서귀포 중문 카페">
-<meta property="og:description" content="제주 서귀포 중문 카페. QR로 메뉴 확인, 카카오톡 테이크아웃 주문. Coffee, Dessert, Tea.">
+<meta property="og:description" content="제주 서귀포 중문 카페. QR로 메뉴 확인, 위챗 테이크아웃 주문. Coffee, Dessert, Tea.">
 <meta property="og:image" content="">
 <meta property="og:url" content="https://pha00zgo-cmyk.github.io/1/">
 <meta property="og:locale" content="ko_KR">
@@ -190,7 +190,7 @@
   display:flex; align-items:center; gap:8px;
 }
 #moniqueApp .section-title small{ color:var(--muted); font-weight:500; }
-#moniqueApp .menu-list{ display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; }
+#moniqueApp .menu-list{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
 
 #moniqueApp .menu-item{
   display:flex;
@@ -417,13 +417,10 @@
 
 @media (max-width: 980px){
   #moniqueApp .grid{ grid-template-columns: 1fr; }
-  #moniqueApp .menu-list{ grid-template-columns: repeat(3, 1fr); }
+  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
   #moniqueApp .form{ grid-template-columns: 1fr; }
   #moniqueApp .qr-box{ grid-template-columns: 1fr; }
   #moniqueApp #qrcode{ width:180px; height:180px; }
-}
-@media (max-width: 720px){
-  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px){
   #moniqueApp .menu-list{ grid-template-columns: 1fr; }
@@ -444,7 +441,6 @@
       <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴<span class="chip-en">QR菜单</span></button>
       <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문<span class="chip-en">外带点单</span></button>
       <button class="chip" onclick="moniqueScroll('location')">오시는 길<span class="chip-en">交通指南</span></button>
-      <button class="chip" onclick="moniqueScroll('qr')">QR 생성<span class="chip-en">生成QR码</span></button>
     </div>
   </div>
 
@@ -452,11 +448,11 @@
   <div class="intro-banner">
     <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
     <p class="intro-desc">
-      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>위챗</b>으로 바로 보내세요.
     </p>
     <div class="intro-lang">
       <b>中文</b> 西归浦咖啡厅 · 中文咖啡厅 · 济州岛咖啡厅 ｜ MONIQUE<br>
-      扫描QR码查看菜单，生成外带订单，通过<b>KakaoTalk</b>直接发送。
+      扫描QR码查看菜单，生成外带订单，通过<b>微信</b>直接发送。
     </div>
   </div>
 
@@ -520,7 +516,7 @@
         <div class="head">
           <div>
             <h2>테이크아웃 주문 外带点单</h2>
-            <p>장바구니 담기 → 주문서 생성 → 카카오톡 전송<br>加入购物车 → 生成订单 → 通过KakaoTalk发送</p>
+            <p>장바구니 담기 → 주문서 생성 → 위챗 전송<br>加入购物车 → 生成订单 → 通过微信发送</p>
           </div>
         </div>
 
@@ -572,7 +568,7 @@
           <div class="actions" id="orderActions" style="display:none;">
             <button class="btn primary" onclick="buildOrder()">주문서 생성 生成订单</button>
             <button class="btn" onclick="copyOrder()">주문서 복사 复制订单</button>
-            <button class="btn" onclick="sendKakao()">카카오톡 전송 KakaoTalk发送</button>
+            <button class="btn" onclick="sendWechat()">위챗 전송 微信发送</button>
             <button class="btn" onclick="shareSms()">문자 보내기 发短信</button>
             <button class="btn danger" onclick="clearCart()">장바구니 비우기 清空购物车</button>
           </div>
@@ -629,41 +625,12 @@
       </section>
 
       <!-- QR -->
-      <section class="card" id="qr" style="margin-top:16px;">
-        <div class="head">
-          <div>
-            <h2>QR 생성 生成QR码</h2>
-            <p>이 페이지 QR코드를 만들어 테이블에 비치하세요<br>生成此页面的QR码，放在桌面上</p>
-          </div>
-        </div>
-        <div class="body">
-          <div class="qr-box">
-            <div id="qrcode" aria-label="QR Code"></div>
-            <div>
-              <div class="field">
-                <label>페이지 URL 页面链接</label>
-                <input id="pageUrl" placeholder="예/例: https://yourdomain.com/qr-menu/" />
-              </div>
-              <div class="actions" style="margin-top:10px;">
-                <button class="btn primary" onclick="makeQR()">QR 생성 生成</button>
-                <button class="btn" onclick="copyUrl()">URL 복사 复制</button>
-                <button class="btn" onclick="window.print()">인쇄 打印</button>
-              </div>
-              <p class="small" style="margin:10px 0 0;">
-                * 실제 주소(URL)를 넣고 QR 생성 → 출력<br>
-                * 输入实际URL后生成QR码 → 打印
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- SETTINGS (SEO/Schema 핵심) -->
       <section class="card" style="margin-top:16px;">
         <div class="head">
           <div>
             <h2>가게 정보 (SEO/구글노출 핵심)</h2>
-            <p>주소/좌표/영업시간/지도 임베드/카톡 링크를 채우면 검색 노출에 유리합니다.</p>
+            <p>주소/좌표/영업시간/지도 임베드/위챗 링크를 채우면 검색 노출에 유리합니다.</p>
           </div>
         </div>
         <div class="body">
@@ -698,8 +665,8 @@
             </div>
 
             <div class="field full">
-              <label>카카오채널 1:1 채팅 링크 (카톡 주문 연결)</label>
-              <input id="kakaoChatUrl" value="https://pf.kakao.com/_XXXX/chat" />
+              <label>위챗 링크 微信链接 (주문 연결 订单对接)</label>
+              <input id="wechatUrl" value="" placeholder="위챗 미니프로그램 또는 공식계정 링크" />
             </div>
 
             <div class="field full">
@@ -793,8 +760,8 @@
     </div>
     <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
     <p class="sub">
-      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
-      <span class="small">English / 中文 안내도 포함되어 있습니다.</span>
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>위챗</b>으로 바로 보내세요.
+      <span class="small">中文 안내도 포함되어 있습니다.</span>
     </p>
 
     <div class="badgeRow">
@@ -1081,16 +1048,16 @@ async function copyOrder(){
   }
 }
 
-/* ✅ 카카오톡 링크로 보내기: 주문서 자동 복사 → 카카오채널 채팅 링크 열기 */
-async function sendKakao(){
+/* ✅ 위챗으로 보내기: 주문서 자동 복사 → 위챗 링크 열기 */
+async function sendWechat(){
   const text = document.getElementById("orderText").value.trim();
-  if(!text){ alert("먼저 '주문서 생성'을 눌러주세요."); return; }
+  if(!text){ alert("먼저 '주문서 생성'을 눌러주세요. / 请先点击"生成订单"。"); return; }
 
   try{ await navigator.clipboard.writeText(text); }catch(e){ /* ignore */ }
 
-  const url = document.getElementById("kakaoChatUrl").value.trim();
+  const url = document.getElementById("wechatUrl").value.trim();
   if(!url || !url.startsWith("http")){
-    alert("카카오채널 채팅 링크를 입력해주세요. 예: https://pf.kakao.com/_XXXX/chat");
+    alert("위챗 링크를 입력해주세요. / 请输入微信链接。");
     return;
   }
   window.open(url, "_blank");
