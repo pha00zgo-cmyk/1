@@ -46,21 +46,29 @@
   --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0;
   --card:#f8fafc; --brand:#2f6b55; --radius:18px;
   --shadow: 0 10px 25px rgba(2,6,23,.06);
-  max-width:1100px; margin:0 auto; padding:18px 0 40px;
+  max-width:1100px; margin:0 auto; padding:18px 10px 40px;
   font-family:"Pretendard Variable", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
   color:var(--fg);
+  -webkit-text-size-adjust:100%;
 }
 #moniqueApp *{ box-sizing:border-box; }
 #moniqueApp a{ color:inherit; text-decoration:none; }
-#moniqueApp button, #moniqueApp input, #moniqueApp select, #moniqueApp textarea{ font:inherit; }
+#moniqueApp button, #moniqueApp input, #moniqueApp select, #moniqueApp textarea{
+  font:inherit;
+  -webkit-appearance:none;
+  appearance:none;
+}
+#moniqueApp select{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%2364748b' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
+#moniqueApp button{ -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
 
 #moniqueApp .top{
   display:flex; align-items:center; justify-content:space-between; gap:12px;
   padding:14px 16px; border:1px solid var(--line); border-radius:22px;
   background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
+  flex-wrap:wrap;
 }
-#moniqueApp .brand{ display:flex; align-items:center; gap:10px; min-width: 220px; }
+#moniqueApp .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
 #moniqueApp .logo{
   width:40px; height:40px; border-radius:14px;
   background:linear-gradient(135deg, var(--brand), #1e293b);
@@ -69,11 +77,12 @@
 #moniqueApp .brand-title strong{ display:block; font-size:16px; letter-spacing:.3px; }
 #moniqueApp .brand-title span{ display:block; font-size:12px; color:var(--muted); }
 
-#moniqueApp .nav{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+#moniqueApp .nav{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; flex:1; }
 #moniqueApp .chip{
   border:1px solid var(--line); background:#fff; padding:8px 12px;
   border-radius:999px; font-size:13px; cursor:pointer; white-space:nowrap;
   display:flex; flex-direction:column; align-items:center; gap:2px;
+  flex-shrink:0;
 }
 #moniqueApp .chip .chip-en{
   font-size:10px; color:var(--muted); font-weight:400;
@@ -415,6 +424,7 @@
   margin-top:10px;
 }
 
+/* 태블릿 */
 @media (max-width: 980px){
   #moniqueApp .grid{ grid-template-columns: 1fr; }
   #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
@@ -422,8 +432,76 @@
   #moniqueApp .qr-box{ grid-template-columns: 1fr; }
   #moniqueApp #qrcode{ width:180px; height:180px; }
 }
-@media (max-width: 480px){
-  #moniqueApp .menu-list{ grid-template-columns: 1fr; }
+
+/* 모바일 */
+@media (max-width: 600px){
+  #moniqueApp{ padding:10px 8px 30px; }
+
+  /* 상단 네비 세로 정렬 */
+  #moniqueApp .top{
+    flex-direction:column;
+    align-items:stretch;
+    padding:12px;
+    border-radius:16px;
+    gap:10px;
+  }
+  #moniqueApp .brand{ justify-content:center; }
+  #moniqueApp .nav{ justify-content:center; gap:6px; }
+  #moniqueApp .chip{ padding:7px 10px; font-size:12px; }
+
+  /* 소개 배너 */
+  #moniqueApp .intro-banner{ padding:12px 14px; border-radius:16px; }
+  #moniqueApp .intro-banner h1{ font-size:15px; }
+
+  /* 카드 */
+  #moniqueApp .card{ border-radius:14px; }
+  #moniqueApp .head{ flex-direction:column; align-items:flex-start; padding:12px; }
+  #moniqueApp .body{ padding:10px; }
+
+  /* 메뉴 1열 */
+  #moniqueApp .menu-list{ grid-template-columns: 1fr; gap:8px; }
+  #moniqueApp .menu-item{ padding:10px; border-radius:14px; }
+  #moniqueApp .item-img{ height:140px; border-radius:12px; }
+  #moniqueApp .section-title{ font-size:14px; flex-wrap:wrap; }
+
+  /* 장바구니 */
+  #moniqueApp .cart-row{ grid-template-columns: 1fr; gap:8px; }
+  #moniqueApp .qty{ justify-content:flex-start; }
+  #moniqueApp .qty button{ width:38px; height:38px; }
+
+  /* 주문 폼 */
+  #moniqueApp .form{ grid-template-columns: 1fr; }
+  #moniqueApp .field input, #moniqueApp .field textarea, #moniqueApp .field select{
+    font-size:16px;
+    padding:12px;
+  }
+
+  /* 버튼 */
+  #moniqueApp .actions{ flex-direction:column; }
+  #moniqueApp .actions .btn{ width:100%; justify-content:center; padding:12px; font-size:14px; }
+  #moniqueApp .btn.add{ padding:10px 12px; }
+
+  /* 지도 */
+  #moniqueApp .map-iframe{ height:220px; }
+  #moniqueApp .dir-row{ flex-direction:column; }
+  #moniqueApp .dir-row .btn{ width:100%; justify-content:center; text-align:center; padding:12px; }
+
+  /* 하단 히어로 */
+  #moniqueApp .hero{ padding:12px; border-radius:16px; }
+  #moniqueApp .hero-img{ height:200px; border-radius:12px; }
+  #moniqueApp .hero h1{ font-size:16px; }
+  #moniqueApp .badge{ padding:5px 8px; font-size:11px; }
+
+  /* 합계 영역 */
+  #moniqueApp .totals{ padding:10px; }
+  #moniqueApp .totals .row{ font-size:12px; }
+  #moniqueApp .totals .row strong{ font-size:14px; }
+
+  /* 주문서 텍스트영역 */
+  #moniqueApp #orderText{ font-size:13px; min-height:140px; }
+
+  /* 설정 영역 */
+  #moniqueApp .pillnote{ font-size:11.5px; padding:8px 10px; border-radius:12px; }
 }
 </style>
 
