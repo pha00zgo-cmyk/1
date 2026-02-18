@@ -1,14 +1,1278 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
-</head>
-<body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
-</body>
-</html>
+<!-- =======================
+ MONIQUE · Seogwipo / Jungmun · QR MENU + TAKEOUT (WordPress Embed)
+ + Google Map Embed + Directions (Naver/Kakao/Google)
+ + OpeningHoursSpecification (Schema)
+ + Auto menu images via WP Media Library (REST API search)
+======================== -->
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<style>
+#moniqueApp{
+  --bg:#ffffff; --fg:#0f172a; --muted:#64748b; --line:#e2e8f0;
+  --card:#f8fafc; --brand:#2f6b55; --radius:18px;
+  --shadow: 0 10px 25px rgba(2,6,23,.06);
+  max-width:1100px; margin:0 auto; padding:18px 0 40px;
+  font-family:"Pretendard Variable", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+  color:var(--fg);
+}
+#moniqueApp *{ box-sizing:border-box; }
+#moniqueApp a{ color:inherit; text-decoration:none; }
+#moniqueApp button, #moniqueApp input, #moniqueApp select, #moniqueApp textarea{ font:inherit; }
+
+#moniqueApp .top{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:14px 16px; border:1px solid var(--line); border-radius:22px;
+  background:rgba(255,255,255,.92); backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+#moniqueApp .brand{ display:flex; align-items:center; gap:10px; min-width: 220px; }
+#moniqueApp .logo{
+  width:40px; height:40px; border-radius:14px;
+  background:linear-gradient(135deg, var(--brand), #1e293b);
+}
+#moniqueApp .brand-title{ line-height:1.1; }
+#moniqueApp .brand-title strong{ display:block; font-size:16px; letter-spacing:.3px; }
+#moniqueApp .brand-title span{ display:block; font-size:12px; color:var(--muted); }
+
+#moniqueApp .nav{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+#moniqueApp .chip{
+  border:1px solid var(--line); background:#fff; padding:8px 12px;
+  border-radius:999px; font-size:13px; cursor:pointer; white-space:nowrap;
+}
+#moniqueApp .chip:hover{ background:#f1f5f9; }
+#moniqueApp .chip.primary{
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 10%, white);
+  font-weight:700;
+}
+
+#moniqueApp .grid{
+  display:grid;
+  grid-template-columns: 1.6fr .9fr;
+  gap:16px;
+  margin-top:16px;
+}
+#moniqueApp .card{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+#moniqueApp .head{
+  padding:14px 14px 10px;
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
+}
+#moniqueApp .head h2{ margin:0; font-size:16px; letter-spacing:.2px; }
+#moniqueApp .head p{ margin:0; color:var(--muted); font-size:12.5px; }
+#moniqueApp .body{ padding:14px; }
+
+#moniqueApp .hero{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 8%, white), #fff);
+}
+#moniqueApp .hero h1{ margin:0; font-size:20px; }
+#moniqueApp .hero .sub{ margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.6; }
+#moniqueApp .badgeRow{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;
+}
+#moniqueApp .badge{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12.5px;
+  color:#0b1220;
+}
+#moniqueApp .small{ font-size:12px; color:var(--muted); }
+#moniqueApp .divider{ height:1px; background:var(--line); margin:14px 0; }
+
+#moniqueApp .section-title{
+  margin:18px 0 10px;
+  font-size:15px;
+  color:#0b1220;
+  display:flex; align-items:center; gap:8px;
+}
+#moniqueApp .section-title small{ color:var(--muted); font-weight:500; }
+#moniqueApp .menu-list{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+
+#moniqueApp .menu-item{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--card);
+}
+#moniqueApp .menu-item .right{
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  min-width:unset;
+}
+#moniqueApp .left{ min-width:0; }
+#moniqueApp .name{
+  margin:0;
+  font-weight:750;
+  font-size:14px;
+  line-height:1.3;
+  word-break:keep-all;
+}
+#moniqueApp .desc{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.4;
+}
+#moniqueApp .right{
+  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+  min-width: 120px;
+}
+#moniqueApp .price{ font-weight:900; font-size:14px; }
+#moniqueApp .btn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:9px 10px;
+  cursor:pointer;
+  font-size:13px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+#moniqueApp .btn:hover{ background:#f1f5f9; }
+#moniqueApp .btn.add{
+  border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
+  background: color-mix(in srgb, var(--brand) 8%, white);
+  font-weight:750;
+}
+#moniqueApp .btn.primary{
+  border-color: var(--brand);
+  background: var(--brand);
+  color:#fff;
+  font-weight:850;
+}
+#moniqueApp .btn.primary:hover{ filter:brightness(.98); }
+#moniqueApp .btn.danger{
+  border-color: #ef4444;
+  background: color-mix(in srgb, #ef4444 8%, white);
+  color:#b91c1c;
+  font-weight:750;
+}
+
+#moniqueApp .pillnote{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px dashed color-mix(in srgb, var(--brand) 45%, var(--line));
+  border-radius:16px;
+  background: color-mix(in srgb, var(--brand) 6%, white);
+  color: #0b1220;
+  font-size:12.5px;
+  line-height:1.55;
+}
+
+/* ✅ 메뉴별 이미지 자리 */
+#moniqueApp .item-img{
+  width:100%;
+  height:160px;
+  border:1px dashed var(--line);
+  border-radius:16px;
+  background:#fff;
+  display:grid;
+  place-items:center;
+  color:var(--muted);
+  overflow:hidden;
+  margin-bottom:10px;
+  position:relative;
+}
+#moniqueApp .item-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+#moniqueApp .img-badge{
+  position:absolute;
+  left:10px; top:10px;
+  padding:6px 8px;
+  border-radius:999px;
+  font-size:11.5px;
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--line);
+  color:var(--muted);
+}
+
+/* Cart */
+#moniqueApp .cart-empty{
+  color:var(--muted);
+  font-size:13px;
+  padding:14px;
+  border:1px dashed var(--line);
+  border-radius:16px;
+  background:#fff;
+}
+#moniqueApp .cart-list{ display:flex; flex-direction:column; gap:10px; }
+#moniqueApp .cart-row{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:10px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+}
+#moniqueApp .cart-name{ margin:0; font-weight:750; font-size:13.5px; line-height:1.3; }
+#moniqueApp .cart-sub{ margin:6px 0 0; color:var(--muted); font-size:12.5px; line-height:1.4; }
+#moniqueApp .qty{ display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+#moniqueApp .qty button{
+  width:34px; height:34px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  cursor:pointer;
+}
+#moniqueApp .qty button:hover{ background:#f1f5f9; }
+#moniqueApp .qty span{ min-width:20px; text-align:center; font-weight:800; }
+
+#moniqueApp .totals{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--card);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+#moniqueApp .totals .row{ display:flex; justify-content:space-between; gap:10px; font-size:13px; color:var(--muted); }
+#moniqueApp .totals .row strong{ color:var(--fg); font-size:15px; }
+
+#moniqueApp .form{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+#moniqueApp .field{ display:flex; flex-direction:column; gap:6px; }
+#moniqueApp .field label{ font-size:12.5px; color:var(--muted); }
+#moniqueApp .field input, #moniqueApp .field textarea, #moniqueApp .field select{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  outline:none;
+  background:#fff;
+}
+#moniqueApp .field textarea{ min-height:80px; resize:vertical; }
+#moniqueApp .field input:focus, #moniqueApp .field textarea:focus, #moniqueApp .field select:focus{
+  border-color: color-mix(in srgb, var(--brand) 50%, var(--line));
+}
+#moniqueApp .form .full{ grid-column: 1 / -1; }
+
+#moniqueApp .actions{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* QR */
+#moniqueApp .qr-box{
+  display:grid;
+  grid-template-columns: 160px 1fr;
+  gap:12px;
+  align-items:center;
+}
+#moniqueApp #qrcode{
+  width:160px; height:160px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+
+/* Map */
+#moniqueApp .map-wrap{
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+}
+#moniqueApp .map-iframe{
+  width:100%;
+  height:300px;
+  border:0;
+  display:block;
+}
+#moniqueApp .dir-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+
+@media (max-width: 980px){
+  #moniqueApp .grid{ grid-template-columns: 1fr; }
+  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
+  #moniqueApp .form{ grid-template-columns: 1fr; }
+  #moniqueApp .qr-box{ grid-template-columns: 1fr; }
+  #moniqueApp #qrcode{ width:180px; height:180px; }
+}
+@media (max-width: 560px){
+  #moniqueApp .menu-list{ grid-template-columns: 1fr; }
+}
+</style>
+
+<div id="moniqueApp">
+  <!-- TOP -->
+  <div class="top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div class="brand-title">
+        <strong id="storeNameUI">MONIQUE</strong>
+        <span id="storeAreaUI">Seogwipo · Jungmun · Jeju</span>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴</button>
+      <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문</button>
+      <button class="chip" onclick="moniqueScroll('location')">오시는 길</button>
+      <button class="chip" onclick="moniqueScroll('qr')">QR 생성</button>
+    </div>
+  </div>
+
+  <!-- HERO (SEO용 키워드/다국어 텍스트 노출) -->
+  <div class="hero" id="intro">
+    <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
+    <p class="sub">
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
+      <span class="small">English / 中文 안내도 포함되어 있습니다.</span>
+    </p>
+
+    <div class="badgeRow">
+      <div class="badge">서귀포카페</div>
+      <div class="badge">서귀포중문카페</div>
+      <div class="badge">제주도카페</div>
+      <div class="badge">Takeout</div>
+      <div class="badge">English Menu</div>
+      <div class="badge">中文菜单</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="small">
+      <b>KO</b> MONIQUE는 제주 서귀포 중문에 위치한 카페입니다. 커피·디카페인·디저트·티, 테이크아웃 주문 지원.<br>
+      <b>EN</b> MONIQUE is a cafe in Seogwipo Jungmun, Jeju. Coffee, decaf options, desserts, tea. Takeout supported.<br>
+      <b>中文</b> MONIQUE 位于济州岛西归浦·中文。提供咖啡/无咖啡因、甜点和茶，支持外带点单。
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT: MENU -->
+    <section class="card" id="menu">
+      <div class="head">
+        <div>
+          <h2>메뉴 (QR MENU)</h2>
+          <p>각 메뉴 항목 위에 사진이 자동으로 붙습니다 (미디어 라이브러리 검색 연동).</p>
+        </div>
+        <div class="small" style="text-align:right;">
+          • 아메리카노 take out -0.5<br>
+          • 텀블러(개인컵) 할인 -0.2
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="section-title">COFFEE <small>(DECAF 변경가능)</small></div>
+        <div class="menu-list" id="menu-coffee"></div>
+        <div class="pillnote">
+          <b>추가 옵션</b><br>
+          샷추가 0.7 · 오트밀크 변경 0.5 · 카라멜/헤이즐넛시럽 0.5
+        </div>
+
+        <div class="section-title">AFFOGATO <small>(Haagendazs)</small></div>
+        <div class="menu-list" id="menu-affogato"></div>
+
+        <div class="section-title">COFFEE COCKTAIL <small>(alcohol)</small></div>
+        <div class="menu-list" id="menu-cocktail"></div>
+
+        <div class="section-title">NON COFFEE</div>
+        <div class="pillnote" style="margin-top:0;">
+          <b>카테고리</b><br>
+          (LATTE) · (SMOOTHIE) · (ADE)
+        </div>
+        <div class="menu-list" id="menu-noncoffee"></div>
+
+        <div class="section-title">TEA <small>(Mariage freres)</small></div>
+        <div class="menu-list" id="menu-tea"></div>
+
+        <div class="divider"></div>
+        <div class="pillnote">
+          <b>📸 메뉴 사진 자동 연결 규칙</b><br>
+          워드프레스 <b>미디어 라이브러리</b>에 사진 업로드 시, 파일명(또는 제목)에 <b>메뉴 키</b>를 포함하세요.<br>
+          예: <code>coffee_americano.jpg</code>, <code>nc_peach_smoothie.png</code><br>
+          그러면 이 페이지가 자동으로 검색해서 메뉴 위에 붙입니다.
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT -->
+    <aside>
+      <!-- TAKEOUT -->
+      <section class="card" id="takeout">
+        <div class="head">
+          <div>
+            <h2>테이크아웃 주문</h2>
+            <p>장바구니 담기 → 주문서 생성 → 카카오톡으로 보내기(자동 복사 후 이동)</p>
+          </div>
+        </div>
+
+        <div class="body">
+          <div id="cartArea"></div>
+
+          <div class="totals" id="totalsBox" style="display:none;">
+            <div class="row"><span>상품 합계</span><span id="subtotalText">0.0</span></div>
+            <div class="row"><span>할인</span><span id="discountText">0.0</span></div>
+            <div class="row"><strong>총 결제금액</strong><strong id="totalText">0.0</strong></div>
+          </div>
+
+          <div class="form" id="orderForm" style="display:none;">
+            <div class="field">
+              <label>성함</label>
+              <input id="custName" placeholder="예: 김모니크" />
+            </div>
+            <div class="field">
+              <label>연락처</label>
+              <input id="custPhone" inputmode="tel" placeholder="예: 01012345678" />
+            </div>
+
+            <div class="field">
+              <label>픽업 시간</label>
+              <select id="pickupTime">
+                <option value="즉시(10~15분)">즉시(10~15분)</option>
+                <option value="20분 후">20분 후</option>
+                <option value="30분 후">30분 후</option>
+                <option value="시간 지정(메모에 작성)">시간 지정(메모에 작성)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>할인 선택</label>
+              <select id="discountMode">
+                <option value="none">할인 없음</option>
+                <option value="takeout">아메리카노 테이크아웃 -0.5</option>
+                <option value="tumbler">텀블러(개인컵) -0.2</option>
+                <option value="both">둘 다 적용</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label>요청사항</label>
+              <textarea id="note" placeholder="예: 얼음 적게, 시럽 추가 등"></textarea>
+            </div>
+          </div>
+
+          <div class="actions" id="orderActions" style="display:none;">
+            <button class="btn primary" onclick="buildOrder()">주문서 생성</button>
+            <button class="btn" onclick="copyOrder()">주문서 복사</button>
+            <button class="btn" onclick="sendKakao()">카카오톡 주문 보내기</button>
+            <button class="btn" onclick="shareSms()">문자 보내기</button>
+            <button class="btn danger" onclick="clearCart()">장바구니 비우기</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div>
+            <div class="small" style="margin-bottom:6px;">생성된 주문서</div>
+            <textarea id="orderText" style="width:100%; border:1px solid var(--line); border-radius:14px; padding:10px 12px; min-height:170px; resize:vertical;" readonly></textarea>
+            <p class="small" style="margin:8px 0 0;">
+              * 결제는 매장 운영 방식에 맞게 진행(현장결제/계좌이체/링크결제 등)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION + MAP -->
+      <section class="card" id="location" style="margin-top:16px;">
+        <div class="head">
+          <div>
+            <h2>오시는 길</h2>
+            <p>구글 지도 + 길찾기(네이버/카카오/구글)</p>
+          </div>
+        </div>
+        <div class="body">
+          <div class="pillnote" style="margin-top:0;">
+            <b>주소</b>: <span id="storeAddrUI">아래 “가게 정보”에서 입력하세요</span><br>
+            <b>전화</b>: <span id="storeTelUI">-</span><br>
+            <b>영업시간</b>: <span id="hoursTextUI">아래에서 설정하세요</span>
+          </div>
+
+          <div class="map-wrap" style="margin-top:10px;">
+            <iframe id="gmapFrame"
+              class="map-iframe"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src=""
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <div class="dir-row">
+            <a class="btn" id="btnNaver" target="_blank" rel="noopener">네이버 길찾기</a>
+            <a class="btn" id="btnKakaoMap" target="_blank" rel="noopener">카카오 길찾기</a>
+            <a class="btn" id="btnGoogleMap" target="_blank" rel="noopener">구글 길찾기</a>
+          </div>
+
+          <div class="small" style="margin-top:10px;">
+            * 외국인/중국인 고객은 Google Maps 경로 안내가 가장 잘 동작합니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- QR -->
+      <section class="card" id="qr" style="margin-top:16px;">
+        <div class="head">
+          <div>
+            <h2>QR 생성</h2>
+            <p>이 페이지 주소로 QR을 만들어 테이블에 비치하세요.</p>
+          </div>
+        </div>
+        <div class="body">
+          <div class="qr-box">
+            <div id="qrcode" aria-label="QR Code"></div>
+            <div>
+              <div class="field">
+                <label>이 페이지 URL</label>
+                <input id="pageUrl" placeholder="예: https://yourdomain.com/qr-menu/" />
+              </div>
+              <div class="actions" style="margin-top:10px;">
+                <button class="btn primary" onclick="makeQR()">QR 생성</button>
+                <button class="btn" onclick="copyUrl()">URL 복사</button>
+                <button class="btn" onclick="window.print()">인쇄</button>
+              </div>
+              <p class="small" style="margin:10px 0 0;">
+                * 게시 후 실제 주소(URL)를 넣고 QR 생성 → 출력
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS (SEO/Schema 핵심) -->
+      <section class="card" style="margin-top:16px;">
+        <div class="head">
+          <div>
+            <h2>가게 정보 (SEO/구글노출 핵심)</h2>
+            <p>주소/좌표/영업시간/지도 임베드/카톡 링크를 채우면 검색 노출에 유리합니다.</p>
+          </div>
+        </div>
+        <div class="body">
+          <div class="form" style="margin:0;">
+            <div class="field">
+              <label>가게명</label>
+              <input id="storeName" value="MONIQUE" />
+            </div>
+            <div class="field">
+              <label>대표 전화번호</label>
+              <input id="storePhone" value="01000000000" inputmode="tel" />
+            </div>
+
+            <div class="field full">
+              <label>주소(전체)</label>
+              <input id="storeAddress" value="서귀포시 중문 ... (전체 주소 입력)" />
+            </div>
+
+            <div class="field">
+              <label>위도(lat)</label>
+              <input id="storeLat" value="33.000000" />
+            </div>
+            <div class="field">
+              <label>경도(lng)</label>
+              <input id="storeLng" value="126.000000" />
+            </div>
+
+            <div class="field full">
+              <label>구글 지도 Embed URL (필수)</label>
+              <input id="googleEmbedUrl" value="https://www.google.com/maps/embed?pb=✅여기에_구글임베드URL" />
+              <div class="small">구글지도 → 공유 → 지도 퍼가기 → &lt;iframe src="..."&gt; 의 src를 그대로 붙여넣으세요.</div>
+            </div>
+
+            <div class="field full">
+              <label>카카오채널 1:1 채팅 링크 (카톡 주문 연결)</label>
+              <input id="kakaoChatUrl" value="https://pf.kakao.com/_XXXX/chat" />
+            </div>
+
+            <div class="field full">
+              <label>메뉴 이미지 자동검색 ON/OFF</label>
+              <select id="autoImageMode">
+                <option value="on" selected>ON (미디어 라이브러리에서 자동검색)</option>
+                <option value="off">OFF (이미지 자동검색 안함)</option>
+              </select>
+              <div class="small">
+                ON일 때: 업로드한 이미지 파일명/제목에 메뉴 키(예: coffee_americano)가 포함되면 자동 연결됩니다.
+              </div>
+            </div>
+
+            <div class="field full">
+              <label>영업시간 설정 (스키마 + 화면 표시)</label>
+              <div class="small" style="margin-top:-2px;">
+                예: 월~금 10:00-19:00, 토 10:00-20:00, 일 휴무 등
+              </div>
+            </div>
+
+            <!-- Opening hours table -->
+            <div class="field full" style="gap:10px;">
+              <div style="display:grid; grid-template-columns: 110px 1fr 1fr 1fr; gap:8px; align-items:center;">
+                <div class="small"><b>요일</b></div>
+                <div class="small"><b>오픈</b></div>
+                <div class="small"><b>마감</b></div>
+                <div class="small"><b>휴무</b></div>
+
+                <div class="small">월</div>
+                <input id="h_mon_open" placeholder="10:00" />
+                <input id="h_mon_close" placeholder="19:00" />
+                <input id="h_mon_closed" type="checkbox" />
+
+                <div class="small">화</div>
+                <input id="h_tue_open" placeholder="10:00" />
+                <input id="h_tue_close" placeholder="19:00" />
+                <input id="h_tue_closed" type="checkbox" />
+
+                <div class="small">수</div>
+                <input id="h_wed_open" placeholder="10:00" />
+                <input id="h_wed_close" placeholder="19:00" />
+                <input id="h_wed_closed" type="checkbox" />
+
+                <div class="small">목</div>
+                <input id="h_thu_open" placeholder="10:00" />
+                <input id="h_thu_close" placeholder="19:00" />
+                <input id="h_thu_closed" type="checkbox" />
+
+                <div class="small">금</div>
+                <input id="h_fri_open" placeholder="10:00" />
+                <input id="h_fri_close" placeholder="19:00" />
+                <input id="h_fri_closed" type="checkbox" />
+
+                <div class="small">토</div>
+                <input id="h_sat_open" placeholder="10:00" />
+                <input id="h_sat_close" placeholder="20:00" />
+                <input id="h_sat_closed" type="checkbox" />
+
+                <div class="small">일</div>
+                <input id="h_sun_open" placeholder="10:00" />
+                <input id="h_sun_close" placeholder="18:00" />
+                <input id="h_sun_closed" type="checkbox" />
+              </div>
+              <div class="actions" style="margin-top:10px;">
+                <button class="btn" onclick="saveHours()">영업시간 저장</button>
+                <button class="btn" onclick="loadHours(true)">기본값으로 채우기</button>
+              </div>
+            </div>
+
+            <div class="field full">
+              <label>안내 문구(선택)</label>
+              <input id="storeNotice" value="픽업 전 확인 메시지를 보내주시면 더 빠르게 준비해드립니다." />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <div class="pillnote">
+            <b>SEO 키워드(페이지에 이미 포함됨)</b><br>
+            서귀포카페 · 서귀포중문카페 · 제주도카페 · Jungmun Cafe · Seogwipo Cafe · 济州岛咖啡馆
+          </div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ✅ 구조화 데이터 (Schema.org) -->
+  <script type="application/ld+json" id="schemaJson">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "MONIQUE",
+    "url": "",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Seogwipo-si",
+      "addressRegion": "Jeju-do",
+      "addressCountry": "KR",
+      "streetAddress": ""
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "",
+      "longitude": ""
+    },
+    "openingHoursSpecification": [],
+    "servesCuisine": ["Coffee", "Dessert", "Tea"],
+    "priceRange": "₩₩",
+    "areaServed": ["Seogwipo", "Jungmun", "Jeju"],
+    "inLanguage": ["ko", "en", "zh"]
+  }
+  </script>
+</div>
+
+<script>
+/* ======================
+  MENU DATA (이미지 자동검색 키: id)
+  - img 비워두면 WP 미디어에서 자동검색해 붙입니다.
+====================== */
+const MENU = {
+  coffee: [
+    { id:"coffee_espresso", name:"에스프레소", price:3.5, desc:"", img:"" },
+    { id:"coffee_americano", name:"아메리카노", price:4.2, desc:"", img:"" },
+    { id:"coffee_big_americano", name:"빅 아메리카노 (ONLY ICE & T/O)", price:5.7, desc:"", img:"" },
+    { id:"coffee_latte", name:"카페라떼", price:4.7, desc:"", img:"" },
+    { id:"coffee_big_latte", name:"빅 카페라떼 (ONLY ICE & T/O)", price:6.2, desc:"", img:"" },
+    { id:"coffee_cappuccino", name:"카푸치노 (ONLY HOT)", price:4.7, desc:"", img:"" },
+    { id:"coffee_vanilla", name:"바닐라라떼", price:5.2, desc:"", img:"" },
+    { id:"coffee_condensed", name:"연유라떼", price:5.2, desc:"", img:"" },
+    { id:"coffee_cream", name:"크림라떼 (ONLY ICE)", price:5.7, desc:"", img:"" },
+    { id:"coffee_monique", name:"모니크라떼 SIGNATURE (ONLY ICE)", price:6.2, desc:"고소한 토피넛크림이 올라간 모니크 시그니처 라떼", img:"" }
+  ],
+  affogato: [
+    { id:"affogato", name:"아포가토", price:6.5, desc:"", img:"" },
+    { id:"affogato_mint", name:"민트 아포가토", price:6.5, desc:"", img:"" },
+    { id:"affogato_jejuma", name:"제주말차 아포가토", price:7.0, desc:"", img:"" }
+  ],
+  cocktail: [
+    { id:"cocktail_espresso_martini", name:"에스프레소 마티니", price:7.0, desc:"보드카 베이스의 달콤하고 부드러운 커피 칵테일", img:"" }
+  ],
+  noncoffee: [
+    { id:"nc_sweetpotato", name:"(LATTE) 고구마라떼", price:5.0, desc:"", img:"" },
+    { id:"nc_choco", name:"(LATTE) 초코라떼", price:5.0, desc:"", img:"" },
+    { id:"nc_strawberry_latte", name:"(LATTE) 딸기라떼 (ONLY ICE)", price:5.5, desc:"", img:"" },
+    { id:"nc_matcha_latte", name:"(LATTE) 제주말차라떼", price:6.0, desc:"", img:"" },
+    { id:"nc_peach_smoothie", name:"(SMOOTHIE) 복숭아스무디", price:6.0, desc:"(코코넛젤리가 들어가요)", img:"" },
+    { id:"nc_corn_smoothie", name:"(SMOOTHIE) 옥수수스무디", price:6.0, desc:"", img:"" },
+    { id:"nc_hibiscus_ade", name:"(ADE) 히비스커스레몬에이드", price:5.0, desc:"", img:"" },
+    { id:"nc_greengrape_ade", name:"(ADE) 청포도에이드", price:5.0, desc:"(코코넛젤리가 들어가요)", img:"" },
+    { id:"nc_real_strawberry_juice", name:"리얼 딸바주스 (시즌한정)", price:6.5, desc:"", img:"" }
+  ],
+  tea: [
+    { id:"tea_marco_polo", name:"마르코폴로 BEST!", price:5.0, desc:"베리류 과일향과 꽃향이 느껴지는 홍차", img:"" },
+    { id:"tea_wedding", name:"웨딩임페리얼", price:5.0, desc:"아쌈 베이스 · 카라멜/초콜릿 향", img:"" },
+    { id:"tea_eros", name:"에로스", price:5.0, desc:"히비스커스&꽃잎 블렌딩 홍차", img:"" },
+    { id:"tea_casablanca", name:"카사블랑카", price:5.0, desc:"홍차/녹차 블렌딩 · 민트의 청량감", img:"" },
+    { id:"tea_marco_rouge_decaf", name:"마르코폴로 루즈 (DECAF)", price:5.0, desc:"루이보스 블렌딩 · 베리의 달콤함", img:"" }
+  ]
+};
+
+const CART_KEY = "monique_cart_v3";
+const HOURS_KEY = "monique_hours_v1";
+const IMG_CACHE_KEY = "monique_img_cache_v1";
+let cart = loadCart();
+
+/* 가격 표시는 메뉴판 단위(예: 4.2) 유지 */
+const KRW = (v) => `${v.toFixed(1)}`;
+
+function moniqueScroll(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* ======================
+  CART
+====================== */
+function loadCart(){
+  try{ return JSON.parse(localStorage.getItem(CART_KEY) || "{}"); }
+  catch(e){ return {}; }
+}
+function saveCart(){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
+}
+function addToCart(id){
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  moniqueScroll("takeout");
+}
+function inc(id){ cart[id] = (cart[id] || 0) + 1; saveCart(); }
+function dec(id){
+  cart[id] = (cart[id] || 0) - 1;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart();
+}
+function clearCart(){
+  cart = {};
+  saveCart();
+  document.getElementById("orderText").value = "";
+}
+
+function findItemById(id){
+  const all = [...MENU.coffee, ...MENU.affogato, ...MENU.cocktail, ...MENU.noncoffee, ...MENU.tea];
+  return all.find(x => x.id === id);
+}
+function calcSubtotal(){
+  let s = 0;
+  for(const [id, qty] of Object.entries(cart)){
+    const item = findItemById(id);
+    if(!item) continue;
+    s += item.price * qty;
+  }
+  return s;
+}
+function calcDiscount(){
+  const mode = document.getElementById("discountMode")?.value || "none";
+  let d = 0;
+  const americanoQty = cart["coffee_americano"] || 0;
+  const totalDrinkQty = Object.values(cart).reduce((a,b)=>a+b,0);
+
+  if(mode === "takeout" || mode === "both") d += 0.5 * americanoQty;
+  if(mode === "tumbler" || mode === "both") d += 0.2 * totalDrinkQty;
+  return d;
+}
+function renderCart(){
+  const area = document.getElementById("cartArea");
+  const totalsBox = document.getElementById("totalsBox");
+  const orderForm = document.getElementById("orderForm");
+  const orderActions = document.getElementById("orderActions");
+
+  const ids = Object.keys(cart);
+  if(ids.length === 0){
+    area.innerHTML = `<div class="cart-empty">장바구니가 비어 있습니다. 왼쪽 메뉴에서 “담기”를 눌러주세요.</div>`;
+    totalsBox.style.display = "none";
+    orderForm.style.display = "none";
+    orderActions.style.display = "none";
+    return;
+  }
+
+  const rows = ids.map(id => {
+    const item = findItemById(id);
+    const qty = cart[id];
+    if(!item) return "";
+    const line = (item.price * qty).toFixed(1);
+    return `
+      <div class="cart-row">
+        <div>
+          <p class="cart-name">${escapeHtml(item.name)}</p>
+          <p class="cart-sub">${escapeHtml(item.desc || "")} ${item.desc ? "· " : ""}단가 ${KRW(item.price)} / 합계 ${line}</p>
+        </div>
+        <div class="qty">
+          <button onclick="dec('${id}')" aria-label="수량 감소">−</button>
+          <span>${qty}</span>
+          <button onclick="inc('${id}')" aria-label="수량 증가">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  area.innerHTML = `<div class="cart-list">${rows}</div>`;
+  totalsBox.style.display = "";
+  orderForm.style.display = "";
+  orderActions.style.display = "";
+
+  const subtotal = calcSubtotal();
+  const discount = calcDiscount();
+  const total = Math.max(0, subtotal - discount);
+
+  document.getElementById("subtotalText").textContent = subtotal.toFixed(1);
+  document.getElementById("discountText").textContent = discount.toFixed(1);
+  document.getElementById("totalText").textContent = total.toFixed(1);
+}
+
+/* ======================
+  ORDER + SHARE
+====================== */
+function buildOrder(){
+  const storeName = document.getElementById("storeName").value.trim() || "MONIQUE";
+  const storeNotice = document.getElementById("storeNotice").value.trim();
+  const name = document.getElementById("custName").value.trim();
+  const phone = document.getElementById("custPhone").value.trim();
+  const pickup = document.getElementById("pickupTime").value;
+  const note = document.getElementById("note").value.trim();
+  const mode = document.getElementById("discountMode").value;
+
+  const ids = Object.keys(cart);
+  if(ids.length === 0){ alert("장바구니가 비어 있습니다."); return; }
+
+  const lines = [];
+  lines.push(`[테이크아웃 주문] ${storeName}`);
+  lines.push(`- 주문자: ${name || "(미입력)"} / 연락처: ${phone || "(미입력)"}`);
+  lines.push(`- 픽업: ${pickup}`);
+  lines.push(`- 할인: ${mode === "takeout" ? "아메리카노 테이크아웃 -0.5" : mode === "tumbler" ? "텀블러(개인컵) -0.2" : mode === "both" ? "테이크아웃(-0.5)+텀블러(-0.2)" : "할인 없음"}`);
+  lines.push("");
+
+  let subtotal = 0;
+  for(const id of ids){
+    const item = findItemById(id);
+    if(!item) continue;
+    const qty = cart[id];
+    const line = item.price * qty;
+    subtotal += line;
+    lines.push(`• ${item.name} × ${qty}  =  ${line.toFixed(1)}`);
+  }
+
+  const discount = calcDiscount();
+  const total = Math.max(0, subtotal - discount);
+
+  lines.push("");
+  lines.push(`상품합계: ${subtotal.toFixed(1)}`);
+  lines.push(`할인: -${discount.toFixed(1)}`);
+  lines.push(`총금액: ${total.toFixed(1)}`);
+  lines.push("");
+
+  if(note){
+    lines.push(`[요청사항]`);
+    lines.push(note);
+    lines.push("");
+  }
+  if(storeNotice){
+    lines.push(`[안내] ${storeNotice}`);
+  }
+
+  document.getElementById("orderText").value = lines.join("\n");
+  renderCart();
+}
+
+async function copyOrder(){
+  const text = document.getElementById("orderText").value.trim();
+  if(!text){ alert("먼저 '주문서 생성'을 눌러주세요."); return; }
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("주문서가 복사되었습니다.");
+  }catch(e){
+    alert("복사가 막혀있습니다. 주문서 내용을 직접 복사해주세요.");
+  }
+}
+
+/* ✅ 카카오톡 링크로 보내기: 주문서 자동 복사 → 카카오채널 채팅 링크 열기 */
+async function sendKakao(){
+  const text = document.getElementById("orderText").value.trim();
+  if(!text){ alert("먼저 '주문서 생성'을 눌러주세요."); return; }
+
+  try{ await navigator.clipboard.writeText(text); }catch(e){ /* ignore */ }
+
+  const url = document.getElementById("kakaoChatUrl").value.trim();
+  if(!url || !url.startsWith("http")){
+    alert("카카오채널 채팅 링크를 입력해주세요. 예: https://pf.kakao.com/_XXXX/chat");
+    return;
+  }
+  window.open(url, "_blank");
+}
+
+function shareSms(){
+  const storePhone = document.getElementById("storePhone").value.trim();
+  const text = document.getElementById("orderText").value.trim();
+  if(!text){ alert("먼저 '주문서 생성'을 눌러주세요."); return; }
+  const smsLink = `sms:${encodeURIComponent(storePhone)}?&body=${encodeURIComponent(text)}`;
+  window.location.href = smsLink;
+}
+
+/* ======================
+  MENU RENDER + AUTO IMAGE
+  - WordPress REST API: /wp-json/wp/v2/media?search=<id>
+  - 캐시: localStorage
+====================== */
+function renderMenu(listId, items){
+  const el = document.getElementById(listId);
+  el.innerHTML = items.map(item => {
+    const imgHtml = item.img
+      ? `<div class="item-img"><span class="img-badge">Photo</span><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}"></div>`
+      : `<div class="item-img" data-imgkey="${escapeHtml(item.id)}"><span class="img-badge">${escapeHtml(item.id)}</span>이미지 자동 연결 대기</div>`;
+
+    return `
+      <div class="menu-item" data-itemid="${escapeHtml(item.id)}">
+        <div class="left">
+          ${imgHtml}
+          <p class="name">${escapeHtml(item.name)}</p>
+          ${item.desc ? `<p class="desc">${escapeHtml(item.desc)}</p>` : ``}
+        </div>
+        <div class="right">
+          <div class="price">${KRW(item.price)}</div>
+          <button class="btn add" onclick="addToCart('${item.id}')">담기</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function getImgCache(){
+  try{ return JSON.parse(localStorage.getItem(IMG_CACHE_KEY) || "{}"); }
+  catch(e){ return {}; }
+}
+function setImgCache(obj){
+  localStorage.setItem(IMG_CACHE_KEY, JSON.stringify(obj));
+}
+
+async function autoAttachImages(){
+  const mode = document.getElementById("autoImageMode")?.value || "on";
+  if(mode !== "on") return;
+
+  const cache = getImgCache();
+  const placeholders = document.querySelectorAll("#moniqueApp .item-img[data-imgkey]");
+  const siteOrigin = window.location.origin;
+  const endpointBase = `${siteOrigin}/wp-json/wp/v2/media?per_page=1&search=`;
+
+  for(const ph of placeholders){
+    const key = ph.getAttribute("data-imgkey");
+    if(!key) continue;
+
+    // 이미 캐시에 있으면 즉시 붙이기
+    if(cache[key]){
+      ph.innerHTML = `<span class="img-badge">Auto</span><img src="${escapeHtml(cache[key])}" alt="${escapeHtml(key)}">`;
+      ph.removeAttribute("data-imgkey");
+      continue;
+    }
+
+    // REST로 검색 (파일명/제목에 key 포함되면 매칭 확률 높음)
+    try{
+      const url = endpointBase + encodeURIComponent(key);
+      const res = await fetch(url, { credentials: "omit" });
+      if(!res.ok) continue;
+      const arr = await res.json();
+      if(Array.isArray(arr) && arr.length > 0 && arr[0].source_url){
+        const imgUrl = arr[0].source_url;
+        cache[key] = imgUrl;
+        ph.innerHTML = `<span class="img-badge">Auto</span><img src="${escapeHtml(imgUrl)}" alt="${escapeHtml(key)}">`;
+        ph.removeAttribute("data-imgkey");
+      }
+    }catch(e){
+      // 조용히 실패
+    }
+  }
+  setImgCache(cache);
+}
+
+/* ======================
+  MAP + DIRECTIONS
+====================== */
+function updateMapAndDirections(){
+  const name = document.getElementById("storeName").value.trim() || "MONIQUE";
+  const addr = document.getElementById("storeAddress").value.trim();
+  const lat = document.getElementById("storeLat").value.trim();
+  const lng = document.getElementById("storeLng").value.trim();
+  const tel = document.getElementById("storePhone").value.trim();
+
+  document.getElementById("storeNameUI").textContent = name;
+  document.getElementById("storeAddrUI").textContent = addr || "주소를 입력해주세요";
+  document.getElementById("storeTelUI").textContent = tel || "-";
+
+  const embed = document.getElementById("googleEmbedUrl").value.trim();
+  const gframe = document.getElementById("gmapFrame");
+  if(embed && embed.startsWith("http")){
+    gframe.src = embed;
+  }else{
+    gframe.src = "";
+  }
+
+  // 길찾기 링크 구성 (좌표 있으면 더 정확)
+  const q = encodeURIComponent(addr || name);
+  const ll = (lat && lng) ? `${lat},${lng}` : "";
+  const place = encodeURIComponent(name);
+
+  // Google Maps: dir
+  const gLink = ll
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ll)}&destination_place_id=&travelmode=driving`
+    : `https://www.google.com/maps/search/?api=1&query=${q}`;
+  document.getElementById("btnGoogleMap").href = gLink;
+
+  // Naver Maps (좌표 + 장소명)
+  // 형식은 환경별로 동작 차이가 있어 "query" 중심으로 안정화
+  const nLink = ll
+    ? `https://map.naver.com/v5/search/${encodeURIComponent(addr || name)}?c=${encodeURIComponent(lng)},${encodeURIComponent(lat)},15,0,0,0,dh`
+    : `https://map.naver.com/v5/search/${encodeURIComponent(addr || name)}`;
+  document.getElementById("btnNaver").href = nLink;
+
+  // Kakao Maps
+  const kLink = ll
+    ? `https://map.kakao.com/link/to/${place},${encodeURIComponent(lat)},${encodeURIComponent(lng)}`
+    : `https://map.kakao.com/link/search/${q}`;
+  document.getElementById("btnKakaoMap").href = kLink;
+}
+
+/* ======================
+  OPENING HOURS (UI + Schema)
+====================== */
+const DAYS = [
+  { key:"mon", label:"월", schema:"Monday" },
+  { key:"tue", label:"화", schema:"Tuesday" },
+  { key:"wed", label:"수", schema:"Wednesday" },
+  { key:"thu", label:"목", schema:"Thursday" },
+  { key:"fri", label:"금", schema:"Friday" },
+  { key:"sat", label:"토", schema:"Saturday" },
+  { key:"sun", label:"일", schema:"Sunday" }
+];
+
+function defaultHours(){
+  return {
+    mon:{open:"10:00", close:"19:00", closed:false},
+    tue:{open:"10:00", close:"19:00", closed:false},
+    wed:{open:"10:00", close:"19:00", closed:false},
+    thu:{open:"10:00", close:"19:00", closed:false},
+    fri:{open:"10:00", close:"19:00", closed:false},
+    sat:{open:"10:00", close:"20:00", closed:false},
+    sun:{open:"10:00", close:"18:00", closed:false}
+  };
+}
+
+function loadHours(fillDefault=false){
+  let h = null;
+  try{ h = JSON.parse(localStorage.getItem(HOURS_KEY) || "null"); }catch(e){}
+  if(!h || fillDefault) h = defaultHours();
+
+  for(const d of DAYS){
+    document.getElementById(`h_${d.key}_open`).value = h[d.key]?.open || "";
+    document.getElementById(`h_${d.key}_close`).value = h[d.key]?.close || "";
+    document.getElementById(`h_${d.key}_closed`).checked = !!h[d.key]?.closed;
+  }
+  localStorage.setItem(HOURS_KEY, JSON.stringify(h));
+  updateSchema();
+  updateHoursTextUI(h);
+}
+
+function saveHours(){
+  const h = {};
+  for(const d of DAYS){
+    h[d.key] = {
+      open: document.getElementById(`h_${d.key}_open`).value.trim(),
+      close: document.getElementById(`h_${d.key}_close`).value.trim(),
+      closed: document.getElementById(`h_${d.key}_closed`).checked
+    };
+  }
+  localStorage.setItem(HOURS_KEY, JSON.stringify(h));
+  updateSchema();
+  updateHoursTextUI(h);
+  alert("영업시간이 저장되었습니다.");
+}
+
+function updateHoursTextUI(h){
+  const parts = [];
+  for(const d of DAYS){
+    const x = h[d.key];
+    if(!x) continue;
+    parts.push(`${d.label} ${x.closed ? "휴무" : `${x.open}-${x.close}`}`);
+  }
+  document.getElementById("hoursTextUI").textContent = parts.join(" · ");
+}
+
+function buildOpeningHoursSpec(){
+  let h = null;
+  try{ h = JSON.parse(localStorage.getItem(HOURS_KEY) || "null"); }catch(e){}
+  if(!h) h = defaultHours();
+
+  const specs = [];
+  for(const d of DAYS){
+    const x = h[d.key];
+    if(!x || x.closed) continue;
+    if(!x.open || !x.close) continue;
+    specs.push({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": d.schema,
+      "opens": x.open,
+      "closes": x.close
+    });
+  }
+  return { specs, hours: h };
+}
+
+/* ======================
+  SCHEMA (SEO)
+====================== */
+function updateSchema(){
+  const storeName = document.getElementById("storeName").value.trim() || "MONIQUE";
+  const tel = document.getElementById("storePhone").value.trim();
+  const addr = document.getElementById("storeAddress").value.trim();
+  const lat = document.getElementById("storeLat").value.trim();
+  const lng = document.getElementById("storeLng").value.trim();
+
+  // opening hours
+  const { specs, hours } = buildOpeningHoursSpec();
+  updateHoursTextUI(hours);
+
+  const schemaEl = document.getElementById("schemaJson");
+  try{
+    const obj = JSON.parse(schemaEl.textContent);
+    obj.name = storeName;
+    obj.telephone = tel;
+    obj.address.streetAddress = addr;
+    obj.geo.latitude = lat;
+    obj.geo.longitude = lng;
+
+    const url = (window.location && window.location.href && window.location.href.startsWith("http"))
+      ? window.location.href : "";
+    obj.url = url;
+
+    obj.openingHoursSpecification = specs;
+
+    schemaEl.textContent = JSON.stringify(obj, null, 2);
+  }catch(e){}
+}
+
+/* ======================
+  QR
+====================== */
+let qrObj = null;
+function makeQR(){
+  const url = document.getElementById("pageUrl").value.trim();
+  if(!url){ alert("URL을 입력해주세요."); return; }
+  const box = document.getElementById("qrcode");
+  box.innerHTML = "";
+  qrObj = new QRCode(box, { text:url, width:160, height:160, correctLevel: QRCode.CorrectLevel.M });
+  alert("QR이 생성되었습니다.");
+}
+async function copyUrl(){
+  const url = document.getElementById("pageUrl").value.trim();
+  if(!url){ alert("URL을 입력해주세요."); return; }
+  try{ await navigator.clipboard.writeText(url); alert("URL이 복사되었습니다."); }
+  catch(e){ alert("복사가 막혀있습니다. 직접 복사해주세요."); }
+}
+
+/* ======================
+  INIT
+====================== */
+function initMonique(){
+  renderMenu("menu-coffee", MENU.coffee);
+  renderMenu("menu-affogato", MENU.affogato);
+  renderMenu("menu-cocktail", MENU.cocktail);
+  renderMenu("menu-noncoffee", MENU.noncoffee);
+  renderMenu("menu-tea", MENU.tea);
+
+  document.getElementById("discountMode").addEventListener("change", renderCart);
+
+  // 설정 변경 시: 스키마/지도 업데이트
+  ["storeName","storePhone","storeAddress","storeLat","storeLng","googleEmbedUrl"].forEach(id=>{
+    document.getElementById(id).addEventListener("input", ()=>{
+      updateSchema();
+      updateMapAndDirections();
+    });
+  });
+  document.getElementById("autoImageMode").addEventListener("change", autoAttachImages);
+
+  loadHours(false);
+  updateSchema();
+  updateMapAndDirections();
+
+  // URL 자동 채우기
+  try{
+    const current = window.location.href;
+    if(current && current.startsWith("http")){
+      document.getElementById("pageUrl").value = current;
+    }
+  }catch(e){}
+
+  renderCart();
+
+  // 메뉴 이미지 자동 붙이기 (초기 + 약간 딜레이 후 1회 더)
+  autoAttachImages();
+  setTimeout(autoAttachImages, 1200);
+}
+initMonique();
+</script>
