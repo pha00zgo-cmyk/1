@@ -53,13 +53,17 @@
 }
 #moniqueApp *{ box-sizing:border-box; }
 #moniqueApp a{ color:inherit; text-decoration:none; }
-#moniqueApp button, #moniqueApp input, #moniqueApp select, #moniqueApp textarea{
-  font:inherit;
+#moniqueApp button, #moniqueApp input, #moniqueApp select, #moniqueApp textarea{ font:inherit; }
+#moniqueApp input, #moniqueApp select, #moniqueApp textarea{
   -webkit-appearance:none;
   appearance:none;
 }
-#moniqueApp select{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%2364748b' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
-#moniqueApp button{ -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+#moniqueApp select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%2364748b' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
+  padding-right:32px;
+}
 
 #moniqueApp .top{
   display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -458,10 +462,13 @@
   #moniqueApp .head{ flex-direction:column; align-items:flex-start; padding:12px; }
   #moniqueApp .body{ padding:10px; }
 
-  /* 메뉴 1열 */
-  #moniqueApp .menu-list{ grid-template-columns: 1fr; gap:8px; }
+  /* 메뉴 2열 */
+  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); gap:8px; }
   #moniqueApp .menu-item{ padding:10px; border-radius:14px; }
-  #moniqueApp .item-img{ height:140px; border-radius:12px; }
+  #moniqueApp .item-img{ height:120px; border-radius:12px; }
+  #moniqueApp .name{ font-size:13px; }
+  #moniqueApp .name-lang{ font-size:10.5px; }
+  #moniqueApp .price{ font-size:13px; }
   #moniqueApp .section-title{ font-size:14px; flex-wrap:wrap; }
 
   /* 장바구니 */
@@ -476,10 +483,11 @@
     padding:12px;
   }
 
-  /* 버튼 */
+  /* 버튼 - 터치 최적화 */
   #moniqueApp .actions{ flex-direction:column; }
-  #moniqueApp .actions .btn{ width:100%; justify-content:center; padding:12px; font-size:14px; }
-  #moniqueApp .btn.add{ padding:10px 12px; }
+  #moniqueApp .actions .btn{ width:100%; justify-content:center; padding:14px; font-size:14px; min-height:48px; }
+  #moniqueApp .btn{ min-height:44px; }
+  #moniqueApp .btn.add{ padding:10px 12px; min-height:44px; }
 
   /* 지도 */
   #moniqueApp .map-iframe{ height:220px; }
@@ -502,6 +510,14 @@
 
   /* 설정 영역 */
   #moniqueApp .pillnote{ font-size:11.5px; padding:8px 10px; border-radius:12px; }
+}
+
+/* 초소형 모바일 */
+@media (max-width: 380px){
+  #moniqueApp .menu-list{ grid-template-columns: 1fr; }
+  #moniqueApp .item-img{ height:160px; }
+  #moniqueApp .chip{ padding:6px 8px; font-size:11px; }
+  #moniqueApp .nav{ gap:4px; }
 }
 </style>
 
