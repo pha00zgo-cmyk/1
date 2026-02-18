@@ -1,13 +1,45 @@
-<!-- =======================
- MONIQUE · Seogwipo / Jungmun · QR MENU + TAKEOUT (WordPress Embed)
- + Google Map Embed + Directions (Naver/Kakao/Google)
- + OpeningHoursSpecification (Schema)
- + Auto menu images via WP Media Library (REST API search)
-======================== -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO 기본 -->
+<title>MONIQUE 모니크 | 서귀포카페 · 서귀포중문카페 · 제주도카페 | QR 메뉴 & 테이크아웃</title>
+<meta name="description" content="제주 서귀포 중문 카페 MONIQUE. QR 메뉴로 커피·디저트·티를 확인하고 카카오톡으로 테이크아웃 주문하세요. Cafe in Seogwipo Jungmun, Jeju. 济州岛西归浦中文咖啡厅。">
+<meta name="keywords" content="서귀포카페,서귀포중문카페,제주도카페,제주카페,중문카페,모니크,MONIQUE,QR메뉴,테이크아웃,Seogwipo Cafe,Jungmun Cafe,Jeju Cafe,济州岛咖啡厅">
+<meta name="author" content="MONIQUE Cafe">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pha00zgo-cmyk.github.io/1/">
+
+<!-- Open Graph (카카오톡/페이스북/인스타그램 공유용) -->
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="MONIQUE 모니크 | 서귀포 중문 카페">
+<meta property="og:description" content="제주 서귀포 중문 카페. QR로 메뉴 확인, 카카오톡 테이크아웃 주문. Coffee, Dessert, Tea.">
+<meta property="og:image" content="">
+<meta property="og:url" content="https://pha00zgo-cmyk.github.io/1/">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:site_name" content="MONIQUE Cafe">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MONIQUE 모니크 | 서귀포 중문 카페">
+<meta name="twitter:description" content="제주 서귀포 중문 카페. QR 메뉴 & 테이크아웃 주문.">
+<meta name="twitter:image" content="">
+
+<!-- 네이버 서치어드바이저 (등록 후 인증 코드 입력) -->
+<!-- <meta name="naver-site-verification" content="여기에_인증코드"> -->
+
+<!-- 구글 서치콘솔 (등록 후 인증 코드 입력) -->
+<!-- <meta name="google-site-verification" content="여기에_인증코드"> -->
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
 
 <style>
 #moniqueApp{
@@ -41,6 +73,28 @@
 #moniqueApp .chip{
   border:1px solid var(--line); background:#fff; padding:8px 12px;
   border-radius:999px; font-size:13px; cursor:pointer; white-space:nowrap;
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+}
+#moniqueApp .chip .chip-en{
+  font-size:10px; color:var(--muted); font-weight:400;
+}
+#moniqueApp .intro-banner{
+  margin-top:14px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 8%, white), #fff);
+  box-shadow: var(--shadow);
+}
+#moniqueApp .intro-banner h1{ margin:0; font-size:18px; line-height:1.4; }
+#moniqueApp .intro-banner .intro-desc{ margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
+#moniqueApp .intro-banner .intro-lang{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.7;
 }
 #moniqueApp .chip:hover{ background:#f1f5f9; }
 #moniqueApp .chip.primary{
@@ -78,6 +132,41 @@
   border-radius:22px;
   background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 8%, white), #fff);
 }
+#moniqueApp .hero-img{
+  width:100%;
+  height:320px;
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:16px;
+  background:#f1f5f9;
+  position:relative;
+}
+#moniqueApp .hero-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+#moniqueApp .hero-img img[src=""]{
+  display:none;
+}
+#moniqueApp .hero-img-placeholder{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  border:2px dashed var(--line);
+  border-radius:16px;
+}
+#moniqueApp .hero-img img[src=""]+.hero-img-placeholder{
+  display:grid;
+}
+#moniqueApp .hero-img img:not([src=""])+.hero-img-placeholder{
+  display:none;
+}
 #moniqueApp .hero h1{ margin:0; font-size:20px; }
 #moniqueApp .hero .sub{ margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.6; }
 #moniqueApp .badgeRow{
@@ -101,7 +190,7 @@
   display:flex; align-items:center; gap:8px;
 }
 #moniqueApp .section-title small{ color:var(--muted); font-weight:500; }
-#moniqueApp .menu-list{ display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; }
+#moniqueApp .menu-list{ display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; }
 
 #moniqueApp .menu-item{
   display:flex;
@@ -125,6 +214,13 @@
   font-size:14px;
   line-height:1.3;
   word-break:keep-all;
+}
+#moniqueApp .name-lang{
+  margin:2px 0 0;
+  color:var(--muted);
+  font-size:11.5px;
+  line-height:1.3;
+  font-weight:400;
 }
 #moniqueApp .desc{
   margin:6px 0 0;
@@ -321,12 +417,15 @@
 
 @media (max-width: 980px){
   #moniqueApp .grid{ grid-template-columns: 1fr; }
-  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
+  #moniqueApp .menu-list{ grid-template-columns: repeat(3, 1fr); }
   #moniqueApp .form{ grid-template-columns: 1fr; }
   #moniqueApp .qr-box{ grid-template-columns: 1fr; }
   #moniqueApp #qrcode{ width:180px; height:180px; }
 }
-@media (max-width: 560px){
+@media (max-width: 720px){
+  #moniqueApp .menu-list{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px){
   #moniqueApp .menu-list{ grid-template-columns: 1fr; }
 }
 </style>
@@ -342,35 +441,25 @@
       </div>
     </div>
     <div class="nav">
-      <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴</button>
-      <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문</button>
-      <button class="chip" onclick="moniqueScroll('location')">오시는 길</button>
-      <button class="chip" onclick="moniqueScroll('qr')">QR 생성</button>
+      <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴<span class="chip-en">QR Menu</span></button>
+      <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문<span class="chip-en">Takeout Order</span></button>
+      <button class="chip" onclick="moniqueScroll('location')">오시는 길<span class="chip-en">Directions</span></button>
+      <button class="chip" onclick="moniqueScroll('qr')">QR 생성<span class="chip-en">QR Code</span></button>
     </div>
   </div>
 
-  <!-- HERO (SEO용 키워드/다국어 텍스트 노출) -->
-  <div class="hero" id="intro">
+  <!-- 카페 소개 배너 (한/영/중) -->
+  <div class="intro-banner">
     <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
-    <p class="sub">
-      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
-      <span class="small">English / 中文 안내도 포함되어 있습니다.</span>
+    <p class="intro-desc">
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.<br>
+      <span style="font-size:12px;">English / 中文 안내도 포함되어 있습니다.</span>
     </p>
-
-    <div class="badgeRow">
-      <div class="badge">서귀포카페</div>
-      <div class="badge">서귀포중문카페</div>
-      <div class="badge">제주도카페</div>
-      <div class="badge">Takeout</div>
-      <div class="badge">English Menu</div>
-      <div class="badge">中文菜单</div>
-    </div>
-
-    <div class="divider"></div>
-    <div class="small">
-      <b>KO</b> MONIQUE는 제주 서귀포 중문에 위치한 카페입니다. 커피·디카페인·디저트·티, 테이크아웃 주문 지원.<br>
-      <b>EN</b> MONIQUE is a cafe in Seogwipo Jungmun, Jeju. Coffee, decaf options, desserts, tea. Takeout supported.<br>
-      <b>中文</b> MONIQUE 位于济州岛西归浦·中文。提供咖啡/无咖啡因、甜点和茶，支持外带点单。
+    <div class="intro-lang">
+      <b>EN</b> Seogwipo Cafe · Jungmun Cafe · Jeju Cafe ｜ MONIQUE<br>
+      Check the menu via QR, create a takeout order, and send it directly through <b>KakaoTalk</b>.<br><br>
+      <b>中文</b> 西归浦咖啡厅 · 中文咖啡厅 · 济州岛咖啡厅 ｜ MONIQUE<br>
+      扫描QR码查看菜单，生成外带订单，通过<b>KakaoTalk</b>直接发送。
     </div>
   </div>
 
@@ -389,6 +478,11 @@
       </div>
 
       <div class="body">
+        <div class="section-title">SIGNATURE <small>대표메뉴</small></div>
+        <div class="menu-list" id="menu-signature"></div>
+
+        <div class="divider"></div>
+
         <div class="section-title">COFFEE <small>(DECAF 변경가능)</small></div>
         <div class="menu-list" id="menu-coffee"></div>
         <div class="pillnote">
@@ -691,6 +785,35 @@
     </aside>
   </div>
 
+  <!-- HERO: 카페 소개 (하단) -->
+  <div class="hero" id="intro">
+    <div class="hero-img">
+      <img id="cafeHeroImg" src="" alt="MONIQUE 카페 전경">
+      <div class="hero-img-placeholder">카페 대표 이미지를 등록하세요<br><small>권장 사이즈: 1200×500px</small></div>
+    </div>
+    <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
+    <p class="sub">
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
+      <span class="small">English / 中文 안내도 포함되어 있습니다.</span>
+    </p>
+
+    <div class="badgeRow">
+      <div class="badge">서귀포카페</div>
+      <div class="badge">서귀포중문카페</div>
+      <div class="badge">제주도카페</div>
+      <div class="badge">Takeout</div>
+      <div class="badge">English Menu</div>
+      <div class="badge">中文菜单</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="small">
+      <b>KO</b> MONIQUE는 제주 서귀포 중문에 위치한 카페입니다. 커피·디카페인·디저트·티, 테이크아웃 주문 지원.<br>
+      <b>EN</b> MONIQUE is a cafe in Seogwipo Jungmun, Jeju. Coffee, decaf options, desserts, tea. Takeout supported.<br>
+      <b>中文</b> MONIQUE 位于济州岛西归浦·中文。提供咖啡/无咖啡因、甜点和茶，支持外带点单。
+    </div>
+  </div>
+
   <!-- ✅ 구조화 데이터 (Schema.org) -->
   <script type="application/ld+json" id="schemaJson">
   {
@@ -726,43 +849,50 @@
   - img 비워두면 WP 미디어에서 자동검색해 붙입니다.
 ====================== */
 const MENU = {
+  signature: [
+    { id:"sig_cheesecake_vanilla", name:"꾸덕이 치즈케이크 (바닐라)", en:"Dense Cheesecake (Vanilla)", zh:"浓郁芝士蛋糕（香草）", price:6.5, desc:"진하고 꾸덕한 바닐라 치즈케이크", img:"" },
+    { id:"sig_cheesecake_chestnut", name:"꾸덕이 치즈케이크 (밤)", en:"Dense Cheesecake (Chestnut)", zh:"浓郁芝士蛋糕（栗子）", price:7.0, desc:"고소한 밤이 들어간 꾸덕 치즈케이크", img:"" },
+    { id:"sig_ferrero_financier", name:"페레로로쉐 휘낭시에", en:"Ferrero Rocher Financier", zh:"费列罗金融家蛋糕", price:4.5, desc:"페레로로쉐를 올린 바삭한 휘낭시에", img:"" },
+    { id:"coffee_americano", name:"아메리카노", en:"Americano", zh:"美式咖啡", price:4.2, desc:"", img:"", isRef:true },
+    { id:"coffee_monique", name:"모니크라떼 SIGNATURE (ONLY ICE)", en:"Monique Latte Signature (Ice Only)", zh:"莫尼克拿铁 招牌（仅冰）", price:6.2, desc:"고소한 토피넛크림이 올라간 모니크 시그니처 라떼", img:"", isRef:true }
+  ],
   coffee: [
-    { id:"coffee_espresso", name:"에스프레소", price:3.5, desc:"", img:"" },
-    { id:"coffee_americano", name:"아메리카노", price:4.2, desc:"", img:"" },
-    { id:"coffee_big_americano", name:"빅 아메리카노 (ONLY ICE & T/O)", price:5.7, desc:"", img:"" },
-    { id:"coffee_latte", name:"카페라떼", price:4.7, desc:"", img:"" },
-    { id:"coffee_big_latte", name:"빅 카페라떼 (ONLY ICE & T/O)", price:6.2, desc:"", img:"" },
-    { id:"coffee_cappuccino", name:"카푸치노 (ONLY HOT)", price:4.7, desc:"", img:"" },
-    { id:"coffee_vanilla", name:"바닐라라떼", price:5.2, desc:"", img:"" },
-    { id:"coffee_condensed", name:"연유라떼", price:5.2, desc:"", img:"" },
-    { id:"coffee_cream", name:"크림라떼 (ONLY ICE)", price:5.7, desc:"", img:"" },
-    { id:"coffee_monique", name:"모니크라떼 SIGNATURE (ONLY ICE)", price:6.2, desc:"고소한 토피넛크림이 올라간 모니크 시그니처 라떼", img:"" }
+    { id:"coffee_espresso", name:"에스프레소", en:"Espresso", zh:"浓缩咖啡", price:3.5, desc:"", img:"" },
+    { id:"coffee_americano", name:"아메리카노", en:"Americano", zh:"美式咖啡", price:4.2, desc:"", img:"" },
+    { id:"coffee_big_americano", name:"빅 아메리카노 (ONLY ICE & T/O)", en:"Big Americano (Ice Only & T/O)", zh:"大杯美式（仅冰&外带）", price:5.7, desc:"", img:"" },
+    { id:"coffee_latte", name:"카페라떼", en:"Cafe Latte", zh:"拿铁咖啡", price:4.7, desc:"", img:"" },
+    { id:"coffee_big_latte", name:"빅 카페라떼 (ONLY ICE & T/O)", en:"Big Cafe Latte (Ice Only & T/O)", zh:"大杯拿铁（仅冰&外带）", price:6.2, desc:"", img:"" },
+    { id:"coffee_cappuccino", name:"카푸치노 (ONLY HOT)", en:"Cappuccino (Hot Only)", zh:"卡布奇诺（仅热）", price:4.7, desc:"", img:"" },
+    { id:"coffee_vanilla", name:"바닐라라떼", en:"Vanilla Latte", zh:"香草拿铁", price:5.2, desc:"", img:"" },
+    { id:"coffee_condensed", name:"연유라떼", en:"Condensed Milk Latte", zh:"炼乳拿铁", price:5.2, desc:"", img:"" },
+    { id:"coffee_cream", name:"크림라떼 (ONLY ICE)", en:"Cream Latte (Ice Only)", zh:"奶油拿铁（仅冰）", price:5.7, desc:"", img:"" },
+    { id:"coffee_monique", name:"모니크라떼 SIGNATURE (ONLY ICE)", en:"Monique Latte Signature (Ice Only)", zh:"莫尼克拿铁 招牌（仅冰）", price:6.2, desc:"고소한 토피넛크림이 올라간 모니크 시그니처 라떼", img:"" }
   ],
   affogato: [
-    { id:"affogato", name:"아포가토", price:6.5, desc:"", img:"" },
-    { id:"affogato_mint", name:"민트 아포가토", price:6.5, desc:"", img:"" },
-    { id:"affogato_jejuma", name:"제주말차 아포가토", price:7.0, desc:"", img:"" }
+    { id:"affogato", name:"아포가토", en:"Affogato", zh:"阿芙佳朵", price:6.5, desc:"", img:"" },
+    { id:"affogato_mint", name:"민트 아포가토", en:"Mint Affogato", zh:"薄荷阿芙佳朵", price:6.5, desc:"", img:"" },
+    { id:"affogato_jejuma", name:"제주말차 아포가토", en:"Jeju Matcha Affogato", zh:"济州抹茶阿芙佳朵", price:7.0, desc:"", img:"" }
   ],
   cocktail: [
-    { id:"cocktail_espresso_martini", name:"에스프레소 마티니", price:7.0, desc:"보드카 베이스의 달콤하고 부드러운 커피 칵테일", img:"" }
+    { id:"cocktail_espresso_martini", name:"에스프레소 마티니", en:"Espresso Martini", zh:"浓缩咖啡马天尼", price:7.0, desc:"보드카 베이스의 달콤하고 부드러운 커피 칵테일", img:"" }
   ],
   noncoffee: [
-    { id:"nc_sweetpotato", name:"(LATTE) 고구마라떼", price:5.0, desc:"", img:"" },
-    { id:"nc_choco", name:"(LATTE) 초코라떼", price:5.0, desc:"", img:"" },
-    { id:"nc_strawberry_latte", name:"(LATTE) 딸기라떼 (ONLY ICE)", price:5.5, desc:"", img:"" },
-    { id:"nc_matcha_latte", name:"(LATTE) 제주말차라떼", price:6.0, desc:"", img:"" },
-    { id:"nc_peach_smoothie", name:"(SMOOTHIE) 복숭아스무디", price:6.0, desc:"(코코넛젤리가 들어가요)", img:"" },
-    { id:"nc_corn_smoothie", name:"(SMOOTHIE) 옥수수스무디", price:6.0, desc:"", img:"" },
-    { id:"nc_hibiscus_ade", name:"(ADE) 히비스커스레몬에이드", price:5.0, desc:"", img:"" },
-    { id:"nc_greengrape_ade", name:"(ADE) 청포도에이드", price:5.0, desc:"(코코넛젤리가 들어가요)", img:"" },
-    { id:"nc_real_strawberry_juice", name:"리얼 딸바주스 (시즌한정)", price:6.5, desc:"", img:"" }
+    { id:"nc_sweetpotato", name:"(LATTE) 고구마라떼", en:"Sweet Potato Latte", zh:"红薯拿铁", price:5.0, desc:"", img:"" },
+    { id:"nc_choco", name:"(LATTE) 초코라떼", en:"Chocolate Latte", zh:"巧克力拿铁", price:5.0, desc:"", img:"" },
+    { id:"nc_strawberry_latte", name:"(LATTE) 딸기라떼 (ONLY ICE)", en:"Strawberry Latte (Ice Only)", zh:"草莓拿铁（仅冰）", price:5.5, desc:"", img:"" },
+    { id:"nc_matcha_latte", name:"(LATTE) 제주말차라떼", en:"Jeju Matcha Latte", zh:"济州抹茶拿铁", price:6.0, desc:"", img:"" },
+    { id:"nc_peach_smoothie", name:"(SMOOTHIE) 복숭아스무디", en:"Peach Smoothie", zh:"蜜桃冰沙", price:6.0, desc:"(코코넛젤리가 들어가요)", img:"" },
+    { id:"nc_corn_smoothie", name:"(SMOOTHIE) 옥수수스무디", en:"Corn Smoothie", zh:"玉米冰沙", price:6.0, desc:"", img:"" },
+    { id:"nc_hibiscus_ade", name:"(ADE) 히비스커스레몬에이드", en:"Hibiscus Lemonade", zh:"芙蓉柠檬水", price:5.0, desc:"", img:"" },
+    { id:"nc_greengrape_ade", name:"(ADE) 청포도에이드", en:"Green Grape Ade", zh:"青葡萄果汁", price:5.0, desc:"(코코넛젤리가 들어가요)", img:"" },
+    { id:"nc_real_strawberry_juice", name:"리얼 딸바주스 (시즌한정)", en:"Real Strawberry-Banana Juice (Seasonal)", zh:"鲜榨草莓香蕉汁（季节限定）", price:6.5, desc:"", img:"" }
   ],
   tea: [
-    { id:"tea_marco_polo", name:"마르코폴로 BEST!", price:5.0, desc:"베리류 과일향과 꽃향이 느껴지는 홍차", img:"" },
-    { id:"tea_wedding", name:"웨딩임페리얼", price:5.0, desc:"아쌈 베이스 · 카라멜/초콜릿 향", img:"" },
-    { id:"tea_eros", name:"에로스", price:5.0, desc:"히비스커스&꽃잎 블렌딩 홍차", img:"" },
-    { id:"tea_casablanca", name:"카사블랑카", price:5.0, desc:"홍차/녹차 블렌딩 · 민트의 청량감", img:"" },
-    { id:"tea_marco_rouge_decaf", name:"마르코폴로 루즈 (DECAF)", price:5.0, desc:"루이보스 블렌딩 · 베리의 달콤함", img:"" }
+    { id:"tea_marco_polo", name:"마르코폴로 BEST!", en:"Marco Polo BEST!", zh:"马可波罗 人气!", price:5.0, desc:"베리류 과일향과 꽃향이 느껴지는 홍차", img:"" },
+    { id:"tea_wedding", name:"웨딩임페리얼", en:"Wedding Imperial", zh:"婚礼帝国红茶", price:5.0, desc:"아쌈 베이스 · 카라멜/초콜릿 향", img:"" },
+    { id:"tea_eros", name:"에로스", en:"Eros", zh:"厄洛斯花茶", price:5.0, desc:"히비스커스&꽃잎 블렌딩 홍차", img:"" },
+    { id:"tea_casablanca", name:"카사블랑카", en:"Casablanca", zh:"卡萨布兰卡", price:5.0, desc:"홍차/녹차 블렌딩 · 민트의 청량감", img:"" },
+    { id:"tea_marco_rouge_decaf", name:"마르코폴로 루즈 (DECAF)", en:"Marco Polo Rouge (Decaf)", zh:"马可波罗红（无咖啡因）", price:5.0, desc:"루이보스 블렌딩 · 베리의 달콤함", img:"" }
   ]
 };
 
@@ -817,7 +947,7 @@ function clearCart(){
 }
 
 function findItemById(id){
-  const all = [...MENU.coffee, ...MENU.affogato, ...MENU.cocktail, ...MENU.noncoffee, ...MENU.tea];
+  const all = [...MENU.signature.filter(x=>!x.isRef), ...MENU.coffee, ...MENU.affogato, ...MENU.cocktail, ...MENU.noncoffee, ...MENU.tea];
   return all.find(x => x.id === id);
 }
 function calcSubtotal(){
@@ -993,6 +1123,8 @@ function renderMenu(listId, items){
         <div class="left">
           ${imgHtml}
           <p class="name">${escapeHtml(item.name)}</p>
+          ${item.en ? `<p class="name-lang">${escapeHtml(item.en)}</p>` : ``}
+          ${item.zh ? `<p class="name-lang">${escapeHtml(item.zh)}</p>` : ``}
           ${item.desc ? `<p class="desc">${escapeHtml(item.desc)}</p>` : ``}
         </div>
         <div class="right">
@@ -1239,6 +1371,7 @@ async function copyUrl(){
   INIT
 ====================== */
 function initMonique(){
+  renderMenu("menu-signature", MENU.signature);
   renderMenu("menu-coffee", MENU.coffee);
   renderMenu("menu-affogato", MENU.affogato);
   renderMenu("menu-cocktail", MENU.cocktail);
@@ -1276,3 +1409,5 @@ function initMonique(){
 }
 initMonique();
 </script>
+</body>
+</html>

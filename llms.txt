@@ -1,0 +1,33 @@
+# MONIQUE Cafe
+
+> Cafe in Seogwipo Jungmun, Jeju Island, South Korea. QR menu and KakaoTalk takeout ordering system.
+
+## About
+
+MONIQUE is a cafe located in Jungmun, Seogwipo-si, Jeju-do, South Korea.
+We serve specialty coffee, desserts, affogato, tea (Mariage Freres), and coffee cocktails.
+Customers can scan a QR code to view our full menu and place takeout orders via KakaoTalk.
+
+## Menu Categories
+
+- **Signature**: Dense Cheesecake (Vanilla/Chestnut), Ferrero Rocher Financier, Americano, Monique Latte Signature
+- **Coffee**: Espresso, Americano, Cafe Latte, Cappuccino, Vanilla Latte, Condensed Milk Latte, Cream Latte, Monique Latte Signature (DECAF available)
+- **Affogato**: Affogato, Mint Affogato, Jeju Matcha Affogato (Haagen-Dazs)
+- **Coffee Cocktail**: Espresso Martini
+- **Non-Coffee**: Sweet Potato Latte, Chocolate Latte, Strawberry Latte, Jeju Matcha Latte, Peach Smoothie, Corn Smoothie, Hibiscus Lemonade, Green Grape Ade
+- **Tea (Mariage Freres)**: Marco Polo, Wedding Imperial, Eros, Casablanca, Marco Polo Rouge (Decaf)
+
+## Features
+
+- QR code menu (multilingual: Korean, English, Chinese)
+- KakaoTalk takeout ordering
+- Google Maps integration with Naver/Kakao/Google directions
+- Tumbler discount and takeout discount available
+
+## Location
+
+Jungmun, Seogwipo-si, Jeju-do, South Korea
+
+## Languages
+
+Korean (한국어), English, Chinese (中文)
