@@ -441,23 +441,20 @@
       </div>
     </div>
     <div class="nav">
-      <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴<span class="chip-en">QR Menu</span></button>
-      <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문<span class="chip-en">Takeout Order</span></button>
-      <button class="chip" onclick="moniqueScroll('location')">오시는 길<span class="chip-en">Directions</span></button>
-      <button class="chip" onclick="moniqueScroll('qr')">QR 생성<span class="chip-en">QR Code</span></button>
+      <button class="chip primary" onclick="moniqueScroll('menu')">QR 메뉴<span class="chip-en">QR菜单</span></button>
+      <button class="chip" onclick="moniqueScroll('takeout')">테이크아웃 주문<span class="chip-en">外带点单</span></button>
+      <button class="chip" onclick="moniqueScroll('location')">오시는 길<span class="chip-en">交通指南</span></button>
+      <button class="chip" onclick="moniqueScroll('qr')">QR 생성<span class="chip-en">生成QR码</span></button>
     </div>
   </div>
 
-  <!-- 카페 소개 배너 (한/영/중) -->
+  <!-- 카페 소개 배너 (한/중) -->
   <div class="intro-banner">
     <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
     <p class="intro-desc">
-      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.<br>
-      <span style="font-size:12px;">English / 中文 안내도 포함되어 있습니다.</span>
+      QR로 메뉴 확인하고, 테이크아웃 주문서를 만들어 <b>카카오톡</b>으로 바로 보내세요.
     </p>
     <div class="intro-lang">
-      <b>EN</b> Seogwipo Cafe · Jungmun Cafe · Jeju Cafe ｜ MONIQUE<br>
-      Check the menu via QR, create a takeout order, and send it directly through <b>KakaoTalk</b>.<br><br>
       <b>中文</b> 西归浦咖啡厅 · 中文咖啡厅 · 济州岛咖啡厅 ｜ MONIQUE<br>
       扫描QR码查看菜单，生成外带订单，通过<b>KakaoTalk</b>直接发送。
     </div>
@@ -468,50 +465,50 @@
     <section class="card" id="menu">
       <div class="head">
         <div>
-          <h2>메뉴 (QR MENU)</h2>
-          <p>각 메뉴 항목 위에 사진이 자동으로 붙습니다 (미디어 라이브러리 검색 연동).</p>
+          <h2>메뉴 菜单</h2>
+          <p>QR로 메뉴를 확인하세요 / 扫描QR码查看菜单</p>
         </div>
         <div class="small" style="text-align:right;">
-          • 아메리카노 take out -0.5<br>
-          • 텀블러(개인컵) 할인 -0.2
+          • 아메리카노 테이크아웃 美式外带 -0.5<br>
+          • 텀블러(개인컵) 할인 自带杯优惠 -0.2
         </div>
       </div>
 
       <div class="body">
-        <div class="section-title">SIGNATURE <small>대표메뉴</small></div>
+        <div class="section-title">SIGNATURE <small>대표메뉴 招牌推荐</small></div>
         <div class="menu-list" id="menu-signature"></div>
 
         <div class="divider"></div>
 
-        <div class="section-title">COFFEE <small>(DECAF 변경가능)</small></div>
+        <div class="section-title">COFFEE 咖啡 <small>(DECAF 디카페인 변경가능 可换低因)</small></div>
         <div class="menu-list" id="menu-coffee"></div>
         <div class="pillnote">
-          <b>추가 옵션</b><br>
-          샷추가 0.7 · 오트밀크 변경 0.5 · 카라멜/헤이즐넛시럽 0.5
+          <b>추가 옵션 附加选项</b><br>
+          샷추가 加浓 0.7 · 오트밀크 변경 换燕麦奶 0.5 · 카라멜/헤이즐넛시럽 焦糖/榛果糖浆 0.5
         </div>
 
-        <div class="section-title">AFFOGATO <small>(Haagendazs)</small></div>
+        <div class="section-title">AFFOGATO 阿芙佳朵 <small>(Häagen-Dazs)</small></div>
         <div class="menu-list" id="menu-affogato"></div>
 
-        <div class="section-title">COFFEE COCKTAIL <small>(alcohol)</small></div>
+        <div class="section-title">COFFEE COCKTAIL 咖啡鸡尾酒 <small>(含酒精 alcohol)</small></div>
         <div class="menu-list" id="menu-cocktail"></div>
 
-        <div class="section-title">NON COFFEE</div>
+        <div class="section-title">NON COFFEE 非咖啡饮品</div>
         <div class="pillnote" style="margin-top:0;">
-          <b>카테고리</b><br>
-          (LATTE) · (SMOOTHIE) · (ADE)
+          <b>카테고리 分类</b><br>
+          (LATTE 拿铁) · (SMOOTHIE 冰沙) · (ADE 果汁气泡)
         </div>
         <div class="menu-list" id="menu-noncoffee"></div>
 
-        <div class="section-title">TEA <small>(Mariage freres)</small></div>
+        <div class="section-title">TEA 茶 <small>(Mariage Frères)</small></div>
         <div class="menu-list" id="menu-tea"></div>
 
         <div class="divider"></div>
         <div class="pillnote">
-          <b>📸 메뉴 사진 자동 연결 규칙</b><br>
-          워드프레스 <b>미디어 라이브러리</b>에 사진 업로드 시, 파일명(또는 제목)에 <b>메뉴 키</b>를 포함하세요.<br>
-          예: <code>coffee_americano.jpg</code>, <code>nc_peach_smoothie.png</code><br>
-          그러면 이 페이지가 자동으로 검색해서 메뉴 위에 붙입니다.
+          <b>📸 메뉴 사진 자동 연결 규칙 菜单图片自动关联规则</b><br>
+          워드프레스 미디어 라이브러리에 사진 업로드 시, 파일명에 메뉴 키를 포함하세요.<br>
+          在WordPress媒体库上传照片时，文件名请包含菜单键值。<br>
+          예/例: <code>coffee_americano.jpg</code>, <code>nc_peach_smoothie.png</code>
         </div>
       </div>
     </section>
@@ -522,8 +519,8 @@
       <section class="card" id="takeout">
         <div class="head">
           <div>
-            <h2>테이크아웃 주문</h2>
-            <p>장바구니 담기 → 주문서 생성 → 카카오톡으로 보내기(자동 복사 후 이동)</p>
+            <h2>테이크아웃 주문 外带点单</h2>
+            <p>장바구니 담기 → 주문서 생성 → 카카오톡 전송<br>加入购物车 → 生成订单 → 通过KakaoTalk发送</p>
           </div>
         </div>
 
@@ -531,62 +528,63 @@
           <div id="cartArea"></div>
 
           <div class="totals" id="totalsBox" style="display:none;">
-            <div class="row"><span>상품 합계</span><span id="subtotalText">0.0</span></div>
-            <div class="row"><span>할인</span><span id="discountText">0.0</span></div>
-            <div class="row"><strong>총 결제금액</strong><strong id="totalText">0.0</strong></div>
+            <div class="row"><span>상품 합계 小计</span><span id="subtotalText">0.0</span></div>
+            <div class="row"><span>할인 折扣</span><span id="discountText">0.0</span></div>
+            <div class="row"><strong>총 결제금액 总计</strong><strong id="totalText">0.0</strong></div>
           </div>
 
           <div class="form" id="orderForm" style="display:none;">
             <div class="field">
-              <label>성함</label>
-              <input id="custName" placeholder="예: 김모니크" />
+              <label>성함 姓名</label>
+              <input id="custName" placeholder="예/例: 김모니크" />
             </div>
             <div class="field">
-              <label>연락처</label>
-              <input id="custPhone" inputmode="tel" placeholder="예: 01012345678" />
+              <label>연락처 联系方式</label>
+              <input id="custPhone" inputmode="tel" placeholder="예/例: 01012345678" />
             </div>
 
             <div class="field">
-              <label>픽업 시간</label>
+              <label>픽업 시간 取餐时间</label>
               <select id="pickupTime">
-                <option value="즉시(10~15분)">즉시(10~15분)</option>
-                <option value="20분 후">20분 후</option>
-                <option value="30분 후">30분 후</option>
-                <option value="시간 지정(메모에 작성)">시간 지정(메모에 작성)</option>
+                <option value="즉시(10~15분)">즉시(10~15분) 立即(10~15分钟)</option>
+                <option value="20분 후">20분 후 20分钟后</option>
+                <option value="30분 후">30분 후 30分钟后</option>
+                <option value="시간 지정(메모에 작성)">시간 지정(메모에 작성) 指定时间(备注)</option>
               </select>
             </div>
 
             <div class="field">
-              <label>할인 선택</label>
+              <label>할인 선택 折扣选择</label>
               <select id="discountMode">
-                <option value="none">할인 없음</option>
-                <option value="takeout">아메리카노 테이크아웃 -0.5</option>
-                <option value="tumbler">텀블러(개인컵) -0.2</option>
-                <option value="both">둘 다 적용</option>
+                <option value="none">할인 없음 无折扣</option>
+                <option value="takeout">아메리카노 테이크아웃 美式外带 -0.5</option>
+                <option value="tumbler">텀블러(개인컵) 自带杯 -0.2</option>
+                <option value="both">둘 다 적용 全部适用</option>
               </select>
             </div>
 
             <div class="field full">
-              <label>요청사항</label>
-              <textarea id="note" placeholder="예: 얼음 적게, 시럽 추가 등"></textarea>
+              <label>요청사항 备注</label>
+              <textarea id="note" placeholder="예: 얼음 적게, 시럽 추가 / 例: 少冰, 加糖浆"></textarea>
             </div>
           </div>
 
           <div class="actions" id="orderActions" style="display:none;">
-            <button class="btn primary" onclick="buildOrder()">주문서 생성</button>
-            <button class="btn" onclick="copyOrder()">주문서 복사</button>
-            <button class="btn" onclick="sendKakao()">카카오톡 주문 보내기</button>
-            <button class="btn" onclick="shareSms()">문자 보내기</button>
-            <button class="btn danger" onclick="clearCart()">장바구니 비우기</button>
+            <button class="btn primary" onclick="buildOrder()">주문서 생성 生成订单</button>
+            <button class="btn" onclick="copyOrder()">주문서 복사 复制订单</button>
+            <button class="btn" onclick="sendKakao()">카카오톡 전송 KakaoTalk发送</button>
+            <button class="btn" onclick="shareSms()">문자 보내기 发短信</button>
+            <button class="btn danger" onclick="clearCart()">장바구니 비우기 清空购物车</button>
           </div>
 
           <div class="divider"></div>
 
           <div>
-            <div class="small" style="margin-bottom:6px;">생성된 주문서</div>
+            <div class="small" style="margin-bottom:6px;">생성된 주문서 已生成的订单</div>
             <textarea id="orderText" style="width:100%; border:1px solid var(--line); border-radius:14px; padding:10px 12px; min-height:170px; resize:vertical;" readonly></textarea>
             <p class="small" style="margin:8px 0 0;">
-              * 결제는 매장 운영 방식에 맞게 진행(현장결제/계좌이체/링크결제 등)
+              * 결제는 매장에서 진행 (현장결제/계좌이체/링크결제)<br>
+              * 付款方式请在店内确认（现场支付/转账/链接支付）
             </p>
           </div>
         </div>
@@ -596,15 +594,15 @@
       <section class="card" id="location" style="margin-top:16px;">
         <div class="head">
           <div>
-            <h2>오시는 길</h2>
-            <p>구글 지도 + 길찾기(네이버/카카오/구글)</p>
+            <h2>오시는 길 交通指南</h2>
+            <p>지도 + 길찾기 / 地图 + 导航</p>
           </div>
         </div>
         <div class="body">
           <div class="pillnote" style="margin-top:0;">
-            <b>주소</b>: <span id="storeAddrUI">아래 “가게 정보”에서 입력하세요</span><br>
-            <b>전화</b>: <span id="storeTelUI">-</span><br>
-            <b>영업시간</b>: <span id="hoursTextUI">아래에서 설정하세요</span>
+            <b>주소 地址</b>: <span id="storeAddrUI">아래 "가게 정보"에서 입력하세요</span><br>
+            <b>전화 电话</b>: <span id="storeTelUI">-</span><br>
+            <b>영업시간 营业时间</b>: <span id="hoursTextUI">아래에서 설정하세요</span>
           </div>
 
           <div class="map-wrap" style="margin-top:10px;">
@@ -618,13 +616,14 @@
           </div>
 
           <div class="dir-row">
-            <a class="btn" id="btnNaver" target="_blank" rel="noopener">네이버 길찾기</a>
-            <a class="btn" id="btnKakaoMap" target="_blank" rel="noopener">카카오 길찾기</a>
-            <a class="btn" id="btnGoogleMap" target="_blank" rel="noopener">구글 길찾기</a>
+            <a class="btn" id="btnNaver" target="_blank" rel="noopener">네이버 길찾기 Naver导航</a>
+            <a class="btn" id="btnKakaoMap" target="_blank" rel="noopener">카카오 길찾기 Kakao导航</a>
+            <a class="btn" id="btnGoogleMap" target="_blank" rel="noopener">구글 길찾기 Google导航</a>
           </div>
 
           <div class="small" style="margin-top:10px;">
-            * 외국인/중국인 고객은 Google Maps 경로 안내가 가장 잘 동작합니다.
+            * 외국인 고객은 Google Maps를 추천합니다<br>
+            * 外国客人推荐使用Google Maps导航
           </div>
         </div>
       </section>
@@ -633,8 +632,8 @@
       <section class="card" id="qr" style="margin-top:16px;">
         <div class="head">
           <div>
-            <h2>QR 생성</h2>
-            <p>이 페이지 주소로 QR을 만들어 테이블에 비치하세요.</p>
+            <h2>QR 생성 生成QR码</h2>
+            <p>이 페이지 QR코드를 만들어 테이블에 비치하세요<br>生成此页面的QR码，放在桌面上</p>
           </div>
         </div>
         <div class="body">
@@ -642,16 +641,17 @@
             <div id="qrcode" aria-label="QR Code"></div>
             <div>
               <div class="field">
-                <label>이 페이지 URL</label>
-                <input id="pageUrl" placeholder="예: https://yourdomain.com/qr-menu/" />
+                <label>페이지 URL 页面链接</label>
+                <input id="pageUrl" placeholder="예/例: https://yourdomain.com/qr-menu/" />
               </div>
               <div class="actions" style="margin-top:10px;">
-                <button class="btn primary" onclick="makeQR()">QR 생성</button>
-                <button class="btn" onclick="copyUrl()">URL 복사</button>
-                <button class="btn" onclick="window.print()">인쇄</button>
+                <button class="btn primary" onclick="makeQR()">QR 생성 生成</button>
+                <button class="btn" onclick="copyUrl()">URL 복사 复制</button>
+                <button class="btn" onclick="window.print()">인쇄 打印</button>
               </div>
               <p class="small" style="margin:10px 0 0;">
-                * 게시 후 실제 주소(URL)를 넣고 QR 생성 → 출력
+                * 실제 주소(URL)를 넣고 QR 생성 → 출력<br>
+                * 输入实际URL后生成QR码 → 打印
               </p>
             </div>
           </div>
@@ -789,7 +789,7 @@
   <div class="hero" id="intro">
     <div class="hero-img">
       <img id="cafeHeroImg" src="" alt="MONIQUE 카페 전경">
-      <div class="hero-img-placeholder">카페 대표 이미지를 등록하세요<br><small>권장 사이즈: 1200×500px</small></div>
+      <div class="hero-img-placeholder">카페 대표 이미지를 등록하세요 请上传咖啡厅代表图片<br><small>권장 사이즈 推荐尺寸: 1200×500px</small></div>
     </div>
     <h1>서귀포카페 · 서귀포중문카페 · 제주도카페 ｜ MONIQUE</h1>
     <p class="sub">
@@ -801,16 +801,14 @@
       <div class="badge">서귀포카페</div>
       <div class="badge">서귀포중문카페</div>
       <div class="badge">제주도카페</div>
-      <div class="badge">Takeout</div>
-      <div class="badge">English Menu</div>
+      <div class="badge">외带 Takeout</div>
       <div class="badge">中文菜单</div>
     </div>
 
     <div class="divider"></div>
     <div class="small">
-      <b>KO</b> MONIQUE는 제주 서귀포 중문에 위치한 카페입니다. 커피·디카페인·디저트·티, 테이크아웃 주문 지원.<br>
-      <b>EN</b> MONIQUE is a cafe in Seogwipo Jungmun, Jeju. Coffee, decaf options, desserts, tea. Takeout supported.<br>
-      <b>中文</b> MONIQUE 位于济州岛西归浦·中文。提供咖啡/无咖啡因、甜点和茶，支持外带点单。
+      MONIQUE는 제주 서귀포 중문에 위치한 카페입니다. 커피·디카페인·디저트·티, 테이크아웃 주문 지원.<br>
+      MONIQUE 位于济州岛西归浦·中文。提供咖啡/无咖啡因、甜点和茶，支持外带点单。
     </div>
   </div>
 
@@ -977,7 +975,7 @@ function renderCart(){
 
   const ids = Object.keys(cart);
   if(ids.length === 0){
-    area.innerHTML = `<div class="cart-empty">장바구니가 비어 있습니다. 왼쪽 메뉴에서 “담기”를 눌러주세요.</div>`;
+    area.innerHTML = `<div class="cart-empty">장바구니가 비어 있습니다. 메뉴에서 "담기"를 눌러주세요.<br>购物车为空，请在菜单中点击"加入"。</div>`;
     totalsBox.style.display = "none";
     orderForm.style.display = "none";
     orderActions.style.display = "none";
@@ -993,7 +991,7 @@ function renderCart(){
       <div class="cart-row">
         <div>
           <p class="cart-name">${escapeHtml(item.name)}</p>
-          <p class="cart-sub">${escapeHtml(item.desc || "")} ${item.desc ? "· " : ""}단가 ${KRW(item.price)} / 합계 ${line}</p>
+          <p class="cart-sub">${escapeHtml(item.desc || "")} ${item.desc ? "· " : ""}단가单价 ${KRW(item.price)} / 합계小计 ${line}</p>
         </div>
         <div class="qty">
           <button onclick="dec('${id}')" aria-label="수량 감소">−</button>
@@ -1129,7 +1127,7 @@ function renderMenu(listId, items){
         </div>
         <div class="right">
           <div class="price">${KRW(item.price)}</div>
-          <button class="btn add" onclick="addToCart('${item.id}')">담기</button>
+          <button class="btn add" onclick="addToCart('${item.id}')">담기 加入</button>
         </div>
       </div>
     `;
